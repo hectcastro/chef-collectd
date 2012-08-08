@@ -2,7 +2,7 @@ node["collectd"]["plugins"].each_pair do |plugin_key, definition|
   # Graphite auto-discovery
   if plugin_key.to_s == "write_graphite"
     if node["collectd"]["graphite_ipaddress"].empty?
-      graphite_server_results = search(:node, "roles:#{node["collectd"]["graphite_role"]}")
+      graphite_server_results = search(:node, "roles:#{node["collectd"]["graphite_role"]} AND chef_environment:#{node.chef_environment}")
 
       if graphite_server_results.empty?
         Chef::Application.fatal!("Graphite plugin enabled but no Graphite server found.")

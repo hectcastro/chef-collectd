@@ -6,6 +6,5 @@ default["collectd"]["interval"]           = 10
 default["collectd"]["read_threads"]       = 5
 default["collectd"]["name"]               = node["fqdn"]
 default["collectd"]["plugins"]            = Mash.new
-
 default["collectd"]["graphite_role"]      = "graphite"
 default["collectd"]["graphite_ipaddress"] = ""
