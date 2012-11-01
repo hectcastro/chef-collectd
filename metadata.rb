@@ -6,6 +6,10 @@ version           "0.0.2"
 recipe            "collectd", "Installs and configures collectd"
 recipe            "collectd::attribute_driven", "Installs collectd plugins via node attributes"
 
+%w{ build-essential }.each do |d|
+  depends d
+end
+
 %w{ ubuntu }.each do |os|
     supports os
 end

@@ -1,3 +1,5 @@
+include_recipe "build-essential"
+
 bash "install-collectd" do
   cwd Chef::Config[:file_cache_path]
   code <<-EOH

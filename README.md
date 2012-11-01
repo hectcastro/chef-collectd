@@ -12,6 +12,10 @@ and [realityforge](https://github.com/realityforge-cookbooks/collectd).
 
 * Ubuntu 12.04 (Precise)
 
+### Cookbooks
+
+* build-essential
+
 ## Attributes
 
 * `node["collectd"]["version"]` - Version of collectd to install.
