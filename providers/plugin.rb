@@ -11,4 +11,5 @@ action :create do
     )
     notifies :restart, "service[collectd]"
   end
+  new_resource.updated_by_last_action(true)
 end
