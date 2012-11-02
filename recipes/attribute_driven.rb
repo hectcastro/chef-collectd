@@ -32,12 +32,11 @@ if File.exist?(conf_d)
   Dir.entries(conf_d).each do |entry|
     conf = "#{conf_d}/#{entry}"
 
-    if File.file?(conf) && File.extname(entry) == ".conf" && !keys.include?(File.basename(entry, ".conf"))
-      file conf do
-        backup false
-        action :delete
-        notifies :restart, "service[collectd]"
-      end
+    file conf do
+      backup false
+      action :delete
+      notifies :restart, "service[collectd]"
+      only_if { File.file?(conf) && File.extname(entry) == ".conf" && !keys.include?(File.basename(entry, ".conf")) }
     end
   end
 end
