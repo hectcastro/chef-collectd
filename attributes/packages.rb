@@ -1,0 +1,1 @@
+default["collectd"]["packages"] = [ "collectd" ]

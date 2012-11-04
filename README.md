@@ -32,8 +32,9 @@ and [realityforge](https://github.com/realityforge-cookbooks/collectd).
 
 ## Recipes
 
-* `recipe[collectd]` will install collectd.
+* `recipe[collectd]` will install collectd from source.
 * `recipe[collectd::attribute_driven]` will install collectd via node attributes.
+* `recipe[collectd::packages]` will install collectd (and other plugins) from packages
 
 ## Usage
 
