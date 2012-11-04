@@ -25,7 +25,7 @@ start () {
   echo -n $"Starting $prog: "
   if [ -r "$CONFIG" ]
   then
-    daemon /usr/sbin/collectd -C "$CONFIG"
+    daemon <%= @dir %>/sbin/collectd -C "$CONFIG"
     RETVAL=$?
     echo
     [ $RETVAL -eq 0 ] && touch /var/lock/subsys/$prog
