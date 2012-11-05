@@ -1,3 +1,10 @@
+## v0.0.4:
+
+* Fixes Foodcritic failures.
+* Package installation support.
+* RHEL init script support.
+* Added a recompilation recipe.
+
 ## v0.0.3:
 
 * Added build-essential as a dependency.
