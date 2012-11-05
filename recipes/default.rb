@@ -1,5 +1,37 @@
 include_recipe "build-essential"
 
+if node["collectd"]["plugins"]
+  plugins = node["collectd"]["plugins"]
+  plugin_support_packages = []
+
+  plugin_support_packages << "ganglia-devel" if plugins.include?("ganglia")
+  plugin_support_packages << "libcurl-devel" if plugins.include?("apache") ||
+    plugins.include?("ascent") ||
+    plugins.include?("curl") ||
+    plugins.include?("nginx") ||
+    plugins.include?("write_http")
+  plugin_support_packages << "libesmtp-devel" if plugins.include?("notify_email")
+  plugin_support_packages << "libgcrypt-devel" if plugins.include?("network")
+  plugin_support_packages << "libmemcached-devel" if plugins.include?("memcached")
+  plugin_support_packages << "liboping-devel" if plugins.include?("ping")
+  plugin_support_packages << "libpcap-devel" if plugins.include?("dns")
+  plugin_support_packages << "libvirt-devel" if plugins.include?("virt")
+  plugin_support_packages << "libxml2-devel" if plugins.include?("ascent") ||
+    plugins.include?("virt")
+  plugin_support_packages << "mysql-devel" if plugins.include?("mysql")
+  plugin_support_packages << "perl-devel" if plugins.include?("perl")
+  plugin_support_packages << "postgresql-devel" if plugins.include?("postgresql")
+  plugin_support_packages << "python-devel" if plugins.include?("python")
+  plugin_support_packages << "rrdtool-devel" if plugins.include?("rrdcached") ||
+    plugins.include?("rrdtool")
+  plugin_support_packages << "varnish-libs-devel" if plugins.include?("varnish")
+  plugin_support_packages << "yajl-devel" if plugins.include?("curl_json")
+
+  plugin_support_packages.each do |pkg|
+    package pkg
+  end
+end
+
 bash "install-collectd" do
   cwd Chef::Config[:file_cache_path]
   code <<-EOH
