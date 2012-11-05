@@ -2,6 +2,9 @@ node["collectd"]["plugins"].each_pair do |plugin_key, definition|
   # Graphite auto-discovery
   if plugin_key.to_s == "write_graphite"
     if node["collectd"]["graphite_ipaddress"].empty?
+      if Chef::Config[:solo]
+        Chef::Application.fatal!("Graphite plugin enabled but no Graphite server configured.")
+      end
       graphite_server_results = search(:node, "roles:#{node["collectd"]["graphite_role"]} AND chef_environment:#{node.chef_environment}")
 
       if graphite_server_results.empty?
@@ -12,7 +15,6 @@ node["collectd"]["plugins"].each_pair do |plugin_key, definition|
     else
       definition["config"]["Host"] = node["collectd"]["graphite_ipaddress"]
     end
-
     definition["config"]["Port"] = 2003
   end
 
@@ -30,12 +32,11 @@ if File.exist?(conf_d)
   Dir.entries(conf_d).each do |entry|
     conf = "#{conf_d}/#{entry}"
 
-    if File.file?(conf) && File.extname(entry) == ".conf" && !keys.include?(File.basename(entry, ".conf"))
-      file conf do
-        backup false
-        action :delete
-        notifies :restart, "service[collectd]"
-      end
+    file conf do
+      backup false
+      action :delete
+      notifies :restart, "service[collectd]"
+      only_if { File.file?(conf) && File.extname(entry) == ".conf" && !keys.include?(File.basename(entry, ".conf")) }
     end
   end
 end
