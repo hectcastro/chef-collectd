@@ -30,13 +30,11 @@ keys    = node["collectd"]["plugins"].keys.collect { |k| k.to_s }
 
 if File.exist?(conf_d)
   Dir.entries(conf_d).each do |entry|
-    conf = "#{conf_d}/#{entry}"
-
-    file conf do
+    file "#{conf_d}/#{entry}" do
       backup false
       action :delete
       notifies :restart, "service[collectd]"
-      only_if { File.file?(conf) && File.extname(entry) == ".conf" && !keys.include?(File.basename(entry, ".conf")) }
+      only_if { File.file?("#{conf_d}/#{entry}") && File.extname(entry) == ".conf" && !keys.include?(File.basename(entry, ".conf")) }
     end
   end
 end
