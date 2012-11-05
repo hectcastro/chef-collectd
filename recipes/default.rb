@@ -1,5 +1,11 @@
 include_recipe "build-essential"
 
+if node["platform_family"] == "rhel"
+  %w{ perl-ExtUtils-Embed perl-ExtUtils-MakeMaker }.each do |pkg|
+    package pkg
+  end
+end
+
 bash "install-collectd" do
   cwd Chef::Config[:file_cache_path]
   code <<-EOH
