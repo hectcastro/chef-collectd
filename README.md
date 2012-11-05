@@ -10,6 +10,7 @@ and [realityforge](https://github.com/realityforge-cookbooks/collectd).
 
 ### Platforms
 
+* Amazon 2012.09
 * RedHat 6.3 (Santiago)
 * Ubuntu 12.04 (Precise)
 
