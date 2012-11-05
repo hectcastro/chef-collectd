@@ -18,7 +18,12 @@ end
 
 template "/etc/init.d/collectd" do
   mode "0766"
-  source "collectd.init.erb"
+  case node["platform_family"]
+  when "rhel"
+    source "collectd.init-rhel.erb"
+  else
+    source "collectd.init.erb"
+  end
   variables(
     :dir => node["collectd"]["dir"]
   )
