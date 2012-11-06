@@ -33,11 +33,15 @@ and [realityforge](https://github.com/realityforge-cookbooks/collectd).
 * `node["collectd"]["graphite_ipaddress"]` – IP address to Graphite server if you're
   trying to target one that isn't searchable.
 
+* `node["collectd"]["packages"]` – List of collectd packages.
+
 ## Recipes
 
 * `recipe[collectd]` will install collectd from source.
 * `recipe[collectd::attribute_driven]` will install collectd via node attributes.
-* `recipe[collectd::packages]` will install collectd (and other plugins) from packages
+* `recipe[collectd::packages]` will install collectd (and other plugins) from
+  packages.
+* `recipe[collectd::recompile]` will attempt to recompile collectd.
 
 ## Usage
 
