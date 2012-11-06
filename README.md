@@ -17,6 +17,7 @@ and [realityforge](https://github.com/realityforge-cookbooks/collectd).
 ### Cookbooks
 
 * build-essential
+* yum
 
 ## Attributes
 
