@@ -11,6 +11,6 @@ recipe            "collectd::attribute_driven", "Installs collectd plugins via n
   depends d
 end
 
-%w{ ubuntu }.each do |os|
+%w{ amazon centos fedora redhat scientific ubuntu }.each do |os|
     supports os
 end
