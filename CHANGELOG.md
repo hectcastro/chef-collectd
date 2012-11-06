@@ -1,3 +1,7 @@
+## v0.0.5:
+
+* Install libraries for plugins prior to compilation.
+
 ## v0.0.4:
 
 * Fixes Foodcritic failures.
