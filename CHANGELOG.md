@@ -1,3 +1,7 @@
+## v0.0.6:
+
+* Fix for RHEL5 package support for compilation.
+
 ## v0.0.5:
 
 * Install libraries for plugins prior to compilation.
