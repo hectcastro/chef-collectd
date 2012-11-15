@@ -1,6 +1,6 @@
 include_recipe "build-essential"
 
-if node["platform_family"] == "rhel"
+if node["platform_family"] == "rhel" && node["platform_version"].to_i > 5
   %w{ perl-ExtUtils-Embed perl-ExtUtils-MakeMaker }.each do |pkg|
     package pkg
   end
