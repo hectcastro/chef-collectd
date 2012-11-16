@@ -1,3 +1,7 @@
+## v0.0.7:
+
+* Bump collectd version to 5.1.1.
+
 ## v0.0.6:
 
 * Fix for RHEL5 package support for compilation.
