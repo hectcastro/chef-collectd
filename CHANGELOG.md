@@ -1,3 +1,7 @@
+## v0.0.8:
+
+* Altered remote_file action to :create_if_missing.
+
 ## v0.0.7:
 
 * Bump collectd version to 5.1.1.
