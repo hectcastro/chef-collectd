@@ -76,7 +76,7 @@ end
 remote_file "#{Chef::Config[:file_cache_path]}/collectd-#{node["collectd"]["version"]}.tar.gz" do
   source node["collectd"]["url"]
   checksum node["collectd"]["checksum"]
-  notifies :run, resources(:bash => "install-collectd"), :immediately
+  notifies :run, "bash[install-collectd]", :immediately
   action :create_if_missing
 end
 
