@@ -1,3 +1,7 @@
+## v0.1.1:
+
+* Fix FC043.
+
 ## v0.1.0:
 
 * Added test-kitchen support.
