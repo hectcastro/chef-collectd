@@ -1,3 +1,7 @@
+## v0.2.0:
+
+* Fixed issues with Chef 11 attributes changes.
+
 ## v0.1.1:
 
 * Fix FC043.
