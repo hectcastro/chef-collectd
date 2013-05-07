@@ -1,8 +1,7 @@
-
-
 # treat the graphite plugin specially: set address from search or attributes
-write_graphite = node.default["collectd"]["plugins"]["write_graphite"]
-if write_graphite
+if node.default["collectd"]["plugins"].key?("write_graphite")
+  write_graphite = node.default["collectd"]["plugins"]["write_graphite"]
+
   if node["collectd"]["graphite_ipaddress"].empty?
     if Chef::Config[:solo]
       Chef::Application.fatal!("Graphite plugin enabled but no Graphite server configured.")
@@ -20,7 +19,6 @@ if write_graphite
   write_graphite["config"]["Port"] = 2003
 end
 
-
 # flush all of configuration to conf.d/
 node["collectd"]["plugins"].each_pair do |plugin_key, definition|
   # Graphite auto-discovery
@@ -30,7 +28,6 @@ node["collectd"]["plugins"].each_pair do |plugin_key, definition|
     cookbook definition["cookbook"].to_s if definition["cookbook"]
   end
 end
-
 
 conf_d  = "#{node["collectd"]["dir"]}/etc/conf.d"
 keys    = node["collectd"]["plugins"].keys.collect { |k| k.to_s }
