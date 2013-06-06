@@ -26,7 +26,10 @@ suites:
       version: 5.3.0
       url: http://fossies.org/linux/privat/collectd-5.3.0.tar.gz
       checksum: 3089a9784e02ebc207b4ac88a507922f8aa75fca8303e9aac51d8fc6c247daf4
+      graphite_ipaddress: localhost
       plugins:
+        write_graphite:
+          config: { Prefix: "collectd." }
         syslog:
           config: { LogLevel: "Info" }
         disk: { }
