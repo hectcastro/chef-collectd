@@ -5,15 +5,15 @@ platforms:
 - name: ubuntu-12.04
   driver_config:
     box: opscode-ubuntu-12.04
-    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_chef-11.4.4.box
-    require_chef_omnibus: 11.4.4
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box
+    require_chef_omnibus: true
   run_list:
   - recipe[apt]
 - name: centos-6.3
   driver_config:
     box: opscode-centos-6.3
-    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-6.4_chef-11.4.4.box
-    require_chef_omnibus: 11.4.4
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
+    require_chef_omnibus: true
   run_list:
   - recipe[yum::epel]
 suites:
@@ -26,7 +26,10 @@ suites:
       version: 5.3.0
       url: http://fossies.org/linux/privat/collectd-5.3.0.tar.gz
       checksum: 3089a9784e02ebc207b4ac88a507922f8aa75fca8303e9aac51d8fc6c247daf4
+      graphite_ipaddress: localhost
       plugins:
+        write_graphite:
+          config: { Prefix: "collectd." }
         syslog:
           config: { LogLevel: "Info" }
         disk: { }
