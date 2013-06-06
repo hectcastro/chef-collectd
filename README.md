@@ -4,7 +4,7 @@
 
 Installs and configures collectd.  Much of the work in this cookbook reflects
 work done by [coderanger](https://github.com/coderanger/chef-collectd)
-and [realityforge](https://github.com/realityforge-cookbooks/collectd).
+and [realityforge](https://github.com/realityforge/chef-collectd).
 
 ## Requirements
 
