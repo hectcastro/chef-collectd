@@ -1,3 +1,7 @@
+## v0.2.1:
+
+* Fixed `write_graphite` plugin issues when overriding `Host` via attributes.
+
 ## v0.2.0:
 
 * Fixed issues with Chef 11 attributes changes.
