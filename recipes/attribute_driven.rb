@@ -9,13 +9,13 @@ if node["collectd"]["plugins"].key?("write_graphite")
     if graphite_server_results.empty?
       Chef::Application.fatal!("Graphite plugin enabled but no Graphite server found.")
     else
-      node.set["collectd"]["plugins"]["write_graphite"]["config"]["Host"] = graphite_server_results[0]["ipaddress"]
+      node.default["collectd"]["plugins"]["write_graphite"]["config"]["Host"] = graphite_server_results[0]["ipaddress"]
     end
   else
-    node.set["collectd"]["plugins"]["write_graphite"]["config"]["Host"] = node["collectd"]["graphite_ipaddress"]
+    node.default["collectd"]["plugins"]["write_graphite"]["config"]["Host"] = node["collectd"]["graphite_ipaddress"]
   end
 
-  node.set["collectd"]["plugins"]["write_graphite"]["config"]["Port"] = 2003
+  node.default["collectd"]["plugins"]["write_graphite"]["config"]["Port"] = 2003
 end
 
 # flush all of configuration to conf.d/
