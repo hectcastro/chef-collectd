@@ -1,3 +1,7 @@
+## v0.2.2:
+
+* Set `write_graphite` host attribute via `node.default` over `node.set`.
+
 ## v0.2.1:
 
 * Fixed `write_graphite` plugin issues when overriding `Host` via attributes.
