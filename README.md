@@ -45,6 +45,12 @@ and [realityforge](https://github.com/realityforge/chef-collectd).
 
 ## Usage
 
+By default this cookbook will attempt to download collectd from collectd.org. If your
+HTTP request includes Chef as the user agent, collectd.org returns an HTTP response
+with a message asking you to please stop using their downloads via Chef. It is highly
+recommended that you override `node["collectd"]["url"]` with your own download location
+for collectd.
+
 In order to configure collectd via attributes, setup your roles like the following:
 
     default_attributes(
