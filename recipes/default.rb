@@ -88,7 +88,6 @@ bash "install-collectd" do
   not_if "#{node["collectd"]["dir"]}/sbin/collectd -h 2>&1 | grep #{node["collectd"]["version"]}"
 end
 
-
 template "/etc/init.d/collectd" do
   mode "0766"
   case node["platform_family"]
