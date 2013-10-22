@@ -63,6 +63,20 @@ if node["collectd"]["plugins"]
   end
 end
 
+
+directory "#{node["collectd"]["dir"]}" do
+  action :create
+end
+
+directory "#{node["collectd"]["dir"]}/etc" do
+  action :create
+end
+
+
+directory "#{node["collectd"]["dir"]}/etc/conf.d" do
+  action :create
+end
+
 bash "install-collectd" do
   cwd Chef::Config[:file_cache_path]
   code <<-EOH
@@ -107,9 +121,6 @@ template "#{node["collectd"]["dir"]}/etc/collectd.conf" do
   notifies :restart, "service[collectd]"
 end
 
-directory "#{node["collectd"]["dir"]}/etc/conf.d" do
-  action :create
-end
 
 service "collectd" do
   supports :status => true, :restart => true
