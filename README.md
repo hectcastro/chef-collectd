@@ -3,8 +3,8 @@
 ## Description
 
 Installs and configures collectd.  Much of the work in this cookbook reflects
-work done by [coderanger](https://github.com/coderanger/chef-collectd)
-and [realityforge](https://github.com/realityforge/chef-collectd).
+work done by [coderanger](https://github.com/coderanger/chef-collectd) and
+[realityforge](https://github.com/realityforge/chef-collectd).
 
 ## Requirements
 
@@ -29,10 +29,10 @@ and [realityforge](https://github.com/realityforge/chef-collectd).
 * `node["collectd"]["read_threads"]` - Number of threads performing data reads.
 * `node["collectd"]["name"]` - Name of the node reporting statstics.
 * `node["collectd"]["plugins"]` - Mash of plugins for installation.
-* `node["collectd"]["graphite_role"]` – Role assigned to Graphite server for search.
-* `node["collectd"]["graphite_ipaddress"]` – IP address to Graphite server if you're
-  trying to target one that isn't searchable.
-
+* `node["collectd"]["graphite_role"]` – Role assigned to Graphite server for
+  search.
+* `node["collectd"]["graphite_ipaddress"]` – IP address to Graphite server if
+  you're trying to target one that isn't searchable.
 * `node["collectd"]["packages"]` – List of collectd packages.
 
 ## Recipes
@@ -45,43 +45,45 @@ and [realityforge](https://github.com/realityforge/chef-collectd).
 
 ## Usage
 
-By default this cookbook will attempt to download collectd from collectd.org. If your
-HTTP request includes Chef as the user agent, collectd.org returns an HTTP response
-with a message asking you to please stop using their downloads via Chef. It is highly
-recommended that you override `node["collectd"]["url"]` with your own download location
-for collectd.
+By default this cookbook will attempt to download collectd from collectd.org.
+If your HTTP request includes Chef as the user agent, collectd.org returns an
+HTTP response with a message asking you to please stop using their downloads
+via Chef. It is **highly recommended** that you override
+`node["collectd"]["url"]` with your own download location for collectd.
 
-Collectd alternative download locations(make sure to update your attributes):
+A list of alternative download locations for collectd:
 
-* https://s3.amazonaws.com/collectd-5.4.0/collectd-5.4.0.tar.gz 
+* [https://s3.amazonaws.com/collectd-5.4.0/collectd-5.4.0.tar.gz](https://s3.amazonaws.com/collectd-5.4.0/collectd-5.4.0.tar.gz) (@ahochman)
 
-In order to configure collectd via attributes, setup your roles like the following:
+In order to configure collectd via attributes, setup your roles like:
 
-    default_attributes(
-      "collectd" => {
-        "plugins" => {
-          "syslog" => {
-            "config" => { "LogLevel" => "Info" }
-          },
-          "disk"      => { },
-          "swap"      => { },
-          "memory"    => { },
-          "cpu"       => { },
-          "interface" => {
-            "config" => { "Interface" => "lo", "IgnoreSelected" => true }
-          },
-          "df"        => {
-            "config" => {
-              "ReportReserved" => false,
-              "FSType" => [ "proc", "sysfs", "fusectl", "debugfs", "devtmpfs", "devpts", "tmpfs" ],
-              "IgnoreSelected" => true
-            }
-          },
-          "write_graphite" => {
-            "config" => {
-              "Prefix" => "servers."
-            }
-          }
+```ruby
+default_attributes(
+  "collectd" => {
+    "plugins" => {
+      "syslog" => {
+        "config" => { "LogLevel" => "Info" }
+      },
+      "disk"      => { },
+      "swap"      => { },
+      "memory"    => { },
+      "cpu"       => { },
+      "interface" => {
+        "config" => { "Interface" => "lo", "IgnoreSelected" => true }
+      },
+      "df"        => {
+        "config" => {
+          "ReportReserved" => false,
+          "FSType" => [ "proc", "sysfs", "fusectl", "debugfs", "devtmpfs", "devpts", "tmpfs" ],
+          "IgnoreSelected" => true
+        }
+      },
+      "write_graphite" => {
+        "config" => {
+          "Prefix" => "servers."
         }
       }
-    )
+    }
+  }
+)
+```
