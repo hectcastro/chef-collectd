@@ -51,6 +51,10 @@ with a message asking you to please stop using their downloads via Chef. It is h
 recommended that you override `node["collectd"]["url"]` with your own download location
 for collectd.
 
+Collectd alternative download locations(make sure to update your attributes):
+
+* https://s3.amazonaws.com/collectd-5.4.0/collectd-5.4.0.tar.gz 
+
 In order to configure collectd via attributes, setup your roles like the following:
 
     default_attributes(

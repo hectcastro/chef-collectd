@@ -23,9 +23,8 @@ suites:
   - recipe[collectd::attribute_driven]
   attributes:
     collectd:
-      version: 5.3.0
-      url: http://fossies.org/linux/privat/collectd-5.3.0.tar.gz
-      checksum: 3089a9784e02ebc207b4ac88a507922f8aa75fca8303e9aac51d8fc6c247daf4
+      version: 5.4.0
+      url: https://s3.amazonaws.com/collectd-5.4.0/collectd-5.4.0.tar.gz
       graphite_ipaddress: localhost
       plugins:
         write_graphite:
