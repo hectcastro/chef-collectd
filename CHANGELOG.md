@@ -1,3 +1,9 @@
+## v0.3.0:
+
+* Bump collectd version to `5.4.0`.
+* Update collectd download URL for Test Kitchen suite.
+* Add alternative collectd download URLs to README.
+
 ## v0.2.2:
 
 * Set `write_graphite` host attribute via `node.default` over `node.set`.
