@@ -109,6 +109,7 @@ end
 
 directory "#{node["collectd"]["dir"]}/etc/conf.d" do
   action :create
+  recursive true
 end
 
 service "collectd" do
