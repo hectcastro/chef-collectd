@@ -11,8 +11,8 @@ work done by [coderanger](https://github.com/coderanger/chef-collectd) and
 ### Platforms
 
 * Amazon 2012.09
-* RedHat 6.3 (Santiago)
-* Ubuntu 12.04 (Precise)
+* CentOS 6.5
+* Ubuntu 12.04
 
 ### Cookbooks
 
