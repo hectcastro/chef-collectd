@@ -1,3 +1,8 @@
+## v0.3.1:
+
+* Update Vagrant boxes in Test Kitchen suite.
+* Fix issue with collectd installation and vagrant-cachier.
+
 ## v0.3.0:
 
 * Bump collectd version to `5.4.0`.
