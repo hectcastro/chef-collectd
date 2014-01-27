@@ -12,7 +12,7 @@ if node["collectd"]["plugins"]
 
   case node["platform_family"]
   when "rhel"
-    include_recipe "yum::epel"
+    include_recipe "yum-epel"
 
     plugin_support_packages << "ganglia-devel" if plugins.include?("ganglia")
     plugin_support_packages << "libcurl-devel" if plugins.include?("apache") ||
