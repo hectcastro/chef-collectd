@@ -1,3 +1,7 @@
+## v0.4.0:
+
+* Updated direct `yum` dependency to `yum-epel`.
+
 ## v0.3.1:
 
 * Update Vagrant boxes in Test Kitchen suite.
