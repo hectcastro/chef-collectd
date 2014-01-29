@@ -19,7 +19,7 @@ platforms:
     customize:
       memory: 512
   run_list:
-  - recipe[yum::epel]
+  - recipe[yum-epel]
 suites:
 - name: default
   run_list:
