@@ -79,7 +79,7 @@ bash "install-collectd" do
 end
 
 template "/etc/init.d/collectd" do
-  mode "0766"
+  mode "0744"
   case node["platform_family"]
   when "rhel"
     source "collectd.init-rhel.erb"
