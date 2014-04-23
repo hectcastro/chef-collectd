@@ -1,3 +1,7 @@
+## v0.4.1:
+
+* Fix permissions on `init.d` script.
+
 ## v0.4.0:
 
 * Updated direct `yum` dependency to `yum-epel`.
