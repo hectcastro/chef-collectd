@@ -1,7 +1,7 @@
 default["collectd"]["version"]            = "5.4.1"
 default["collectd"]["dir"]                = "/opt/collectd"
 default["collectd"]["url"]                = "http://collectd.org/files/collectd-#{node["collectd"]["version"]}.tar.gz"
-default["collectd"]["checksum"]           = "cb361deeda00bece54cec2f7a2c368ccea4ac1c4a83388a0dae0435ba8969ee1"
+default["collectd"]["checksum"]           = "853680936893df00bfc2be58f61ab9181fecb1cf45fc5cddcb7d25da98855f65"
 default["collectd"]["interval"]           = 10
 default["collectd"]["read_threads"]       = 5
 default["collectd"]["name"]               = node["fqdn"]

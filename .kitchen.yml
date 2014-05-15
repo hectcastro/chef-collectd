@@ -6,7 +6,7 @@ driver:
     memory: 512
 
 provisioner:
-  name: chef_solo
+  name: chef_zero
 
 platforms:
 - name: ubuntu-12.04
@@ -23,9 +23,9 @@ suites:
   - recipe[collectd::attribute_driven]
   attributes:
     collectd:
-      version: 5.4.0
-      url: https://s3.amazonaws.com/collectd-5.4.0/collectd-5.4.0.tar.gz
-      checksum: c434548789d407b00f15c361305766ba4e36f92ccf2ec98d604aab2a46005239
+      version: 5.4.1
+      url: https://s3.amazonaws.com/collectd-5.4.1/collectd-5.4.1.tar.gz
+      checksum: 853680936893df00bfc2be58f61ab9181fecb1cf45fc5cddcb7d25da98855f65
       graphite_ipaddress: localhost
       plugins:
         write_graphite:

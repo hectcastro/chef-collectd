@@ -1,3 +1,7 @@
+## v0.4.2:
+
+* Bump collectd version to `5.4.1`.
+
 ## v0.4.1:
 
 * Fix permissions on `init.d` script.
