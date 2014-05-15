@@ -1,4 +1,4 @@
-default["collectd"]["version"]            = "5.4.0"
+default["collectd"]["version"]            = "5.4.1"
 default["collectd"]["dir"]                = "/opt/collectd"
 default["collectd"]["url"]                = "http://collectd.org/files/collectd-#{node["collectd"]["version"]}.tar.gz"
 default["collectd"]["checksum"]           = "cb361deeda00bece54cec2f7a2c368ccea4ac1c4a83388a0dae0435ba8969ee1"

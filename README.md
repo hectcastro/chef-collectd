@@ -53,7 +53,7 @@ via Chef. It is **highly recommended** that you override
 
 A list of alternative download locations for collectd:
 
-* [https://s3.amazonaws.com/collectd-5.4.0/collectd-5.4.0.tar.gz](https://s3.amazonaws.com/collectd-5.4.0/collectd-5.4.0.tar.gz) (@ahochman)
+* [https://s3.amazonaws.com/collectd-5.4.1/collectd-5.4.1.tar.gz](https://s3.amazonaws.com/collectd-5.4.1/collectd-5.4.1.tar.gz) (@ahochman)
 
 In order to configure collectd via attributes, setup your roles like:
 
