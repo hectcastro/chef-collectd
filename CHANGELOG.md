@@ -1,3 +1,7 @@
+## v0.4.3:
+
+* Add support for `write_http` plugin.
+
 ## v0.4.2:
 
 * Bump collectd version to `5.4.1`.
