@@ -1,5 +1,5 @@
 action :create do
-  template "#{node["collectd"]["dir"]}/etc/conf.d/#{new_resource.name}.conf" do
+  template ::File.join(node["collectd"]["plugins_conf_dir"], "#{new_resource.name}.conf") do
     owner "root"
     group "root"
     mode "644"
