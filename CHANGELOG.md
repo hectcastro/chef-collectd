@@ -1,3 +1,8 @@
+## v0.4.4:
+
+* Add support for a plugin configuration directory different from the base directory.
+* Add support for Ubuntu 14.04 (Trusty) to test suite.
+
 ## v0.4.3:
 
 * Add support for `write_http` plugin.
