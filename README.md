@@ -29,6 +29,7 @@ work done by [coderanger](https://github.com/coderanger/chef-collectd) and
 * `node["collectd"]["read_threads"]` - Number of threads performing data reads.
 * `node["collectd"]["name"]` - Name of the node reporting statstics.
 * `node["collectd"]["plugins"]` - Mash of plugins for installation.
+* `node["collectd"]["plugins_conf_dir"]` - Directory for collectd plugins configuration files.
 * `node["collectd"]["graphite_role"]` – Role assigned to Graphite server for
   search.
 * `node["collectd"]["graphite_ipaddress"]` – IP address to Graphite server if
