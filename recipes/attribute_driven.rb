@@ -32,6 +32,7 @@ end
 node["collectd"]["python_plugins"].each_pair do |plugin_key, definition|
   # Graphite auto-discovery
   collectd_python_plugin plugin_key.to_s do
+    typesdb definition["typesdb"].to_s if definition["typesdb"]
     config definition["config"].to_hash
     module_config definition["module_config"].to_hash
     template definition["template"].to_s if definition["template"]

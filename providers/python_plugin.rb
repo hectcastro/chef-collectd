@@ -7,6 +7,7 @@ action :create do
     cookbook new_resource.cookbook
     variables(
       :name   => new_resource.name,
+      :typesdb => new_resource.typesdb,
       :config => new_resource.config,
       :module_config => new_resource.module_config
     )
