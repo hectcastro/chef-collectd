@@ -3,6 +3,9 @@
 # Do not edit, changes will be overwritten
 #
 LoadPlugin "python"
+<% if not @typesdb.empty? %>
+TypesDB "<% @typesdb %>""
+<% end %>
 
 <% if not @config.empty? %>
 <Plugin "python">
