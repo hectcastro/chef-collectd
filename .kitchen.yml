@@ -46,3 +46,11 @@ suites:
             ReportReserved: false
             FSType: [ "proc", "sysfs", "fusectl", "debugfs", "devtmpfs", "devpts", "tmpfs" ]
             IgnoreSelected: true
+      python_plugins:
+        rabbitmq:
+          typesdb: "/mnt/pro..."
+          config:
+            ModulePath: "/mnt/projects/collectd-rabbitmq/"
+            Import: "rabbitmq"
+          module_config:
+            username: "blaj"
