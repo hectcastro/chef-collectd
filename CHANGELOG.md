@@ -1,3 +1,8 @@
+## v0.5.0:
+
+* Add support for collectd Python plugins.
+* Add support for removing collectd plugins.
+
 ## v0.4.4:
 
 * Add support for a plugin configuration directory different from the base directory.
