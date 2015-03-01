@@ -1,3 +1,7 @@
+## v0.5.1:
+
+* Update metadata version.
+
 ## v0.5.0:
 
 * Add support for collectd Python plugins.
