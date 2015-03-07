@@ -45,6 +45,8 @@ work done by [coderanger](https://github.com/coderanger/chef-collectd) and
   packages.
 * `recipe[collectd::recompile]` will attempt to recompile collectd.
 
+**Note**: You need to include the default `recipe[collectd]` when using `recipe[collectd:attribute_driven]` to install `collectd`.
+
 ## Usage
 
 By default this cookbook will attempt to download collectd from collectd.org.
