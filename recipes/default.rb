@@ -40,6 +40,7 @@ if node["collectd"]["plugins"]
     plugin_support_packages << "libcurl4-openssl-dev" if plugins.include?("apache") ||
       plugins.include?("ascent") ||
       plugins.include?("curl") ||
+      plugins.include?("curl_json") ||
       plugins.include?("nginx") ||
       plugins.include?("write_http")
     plugin_support_packages << "libesmtp-dev" if plugins.include?("notify_email")
@@ -56,6 +57,7 @@ if node["collectd"]["plugins"]
     plugin_support_packages << "libxml2-dev" if plugins.include?("ascent") ||
       plugins.include?("virt")
     plugin_support_packages << "libyajl-dev" if plugins.include?("curl_json")
+    plugin_support_packages << "python-dev" if plugins.include?("python")
   end
 
   plugin_support_packages.each do |pkg|
@@ -69,11 +71,13 @@ remote_file "#{Chef::Config[:file_cache_path]}/collectd-#{node["collectd"]["vers
   action :create_if_missing
 end
 
+enable_plugin_flags = plugins.keys.map{ |plugin| "--enable-" + plugin }.join(" ")
+
 bash "install-collectd" do
   cwd Chef::Config[:file_cache_path]
   code <<-EOH
     tar -xzf collectd-#{node["collectd"]["version"]}.tar.gz
-    (cd collectd-#{node["collectd"]["version"]} && ./configure --prefix=#{node["collectd"]["dir"]} && make && make install)
+    (cd collectd-#{node["collectd"]["version"]} && ./configure #{enable_plugin_flags} --prefix=#{node["collectd"]["dir"]} && make && make install)
   EOH
   not_if "#{node["collectd"]["dir"]}/sbin/collectd -h 2>&1 | grep #{node["collectd"]["version"]}"
 end
