@@ -97,6 +97,7 @@ template "#{node["collectd"]["dir"]}/etc/collectd.conf" do
   source "collectd.conf.erb"
   variables(
     :name         => node["collectd"]["name"],
+    :fqdnlookup   => node["collectd"]["fqdnlookup"],
     :dir          => node["collectd"]["dir"],
     :interval     => node["collectd"]["interval"],
     :read_threads => node["collectd"]["read_threads"],
