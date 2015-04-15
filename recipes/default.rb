@@ -40,6 +40,7 @@ if node["collectd"]["plugins"]
     plugin_support_packages << "libcurl4-openssl-dev" if plugins.include?("apache") ||
       plugins.include?("ascent") ||
       plugins.include?("curl") ||
+      plugins.include?("curl_json") ||
       plugins.include?("nginx") ||
       plugins.include?("write_http")
     plugin_support_packages << "libesmtp-dev" if plugins.include?("notify_email")
@@ -50,6 +51,7 @@ if node["collectd"]["plugins"]
     plugin_support_packages << "liboping-dev" if plugins.include?("ping")
     plugin_support_packages << "libpcap0.8-dev" if plugins.include?("dns")
     plugin_support_packages << "libperl-dev" if plugins.include?("perl")
+    plugin_support_packages << "python-dev" if plugins.include?("python")
     plugin_support_packages << "librrd-dev" if plugins.include?("rrdcached") ||
       plugins.include?("rrdtool")
     plugin_support_packages << "libvirt-dev" if plugins.include?("virt")
