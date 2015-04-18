@@ -1,3 +1,9 @@
+## v0.5.2:
+
+* Add support for supplying `FQDNLookup` as an attribute.
+* Ensure Python development libraries are when using the Python plugin on
+  Debian.
+
 ## v0.5.1:
 
 * Update metadata version.

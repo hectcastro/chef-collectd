@@ -6,6 +6,7 @@ default["collectd"]["checksum"]           = "853680936893df00bfc2be58f61ab9181fe
 default["collectd"]["interval"]           = 10
 default["collectd"]["read_threads"]       = 5
 default["collectd"]["name"]               = node["fqdn"]
+default["collectd"]["fqdnlookup"]         = true
 default["collectd"]["plugins"]            = Mash.new
 default["collectd"]["python_plugins"]     = Mash.new
 default["collectd"]["graphite_role"]      = "graphite"
