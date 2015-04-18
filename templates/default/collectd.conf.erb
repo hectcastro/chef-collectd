@@ -4,7 +4,7 @@
 #
 
 Hostname "<%= @name %>"
-FQDNLookup true
+FQDNLookup <%= @fqdnlookup %>
 BaseDir "<%= @dir %>"
 PluginDir "<%= @dir %>/lib/collectd"
 TypesDB "<%= @dir %>/share/collectd/types.db"
