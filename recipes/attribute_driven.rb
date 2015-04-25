@@ -25,6 +25,7 @@ node["collectd"]["plugins"].each_pair do |plugin_key, definition|
     config definition["config"].to_hash if definition["config"]
     template definition["template"].to_s if definition["template"]
     cookbook definition["cookbook"].to_s if definition["cookbook"]
+    notifies :restart, "service[collectd]"
   end
 end
 
@@ -37,6 +38,7 @@ node["collectd"]["python_plugins"].each_pair do |plugin_key, definition|
     module_config definition["module_config"].to_hash
     template definition["template"].to_s if definition["template"]
     cookbook definition["cookbook"].to_s if definition["cookbook"]
+    notifies :restart, "service[collectd]"
   end
 end
 
