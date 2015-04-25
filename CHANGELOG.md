@@ -1,3 +1,8 @@
+## v1.0.0:
+
+- Make use of `use_inline_resources` in resource providers. This change breaks
+  backwards compatibility with versions of Chef prior to 11.
+
 ## v0.5.2:
 
 * Add support for supplying `FQDNLookup` as an attribute.
