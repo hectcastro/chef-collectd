@@ -14,7 +14,7 @@ describe 'collectd::default' do
     value['versions'].each do |version|
       context "on #{platform} #{version}" do
         let(:chef_run) do
-          ChefSpec::SoloRunner.new(platform: platform, version: version).converge described_recipe
+          ChefSpec::SoloRunner.new(platform: platform, version: version, file_cache_path: '/var/chef/cache').converge described_recipe
         end
         before do
           stub_command('/opt/collectd/sbin/collectd -h 2>&1 | grep 5.4.1').and_return(true)

@@ -14,7 +14,7 @@ describe 'collectd::attribute_driven' do
     value['versions'].each do |version|
       context "on #{platform} #{version}" do
         let(:chef_run) do
-          ChefSpec::SoloRunner.new(platform: platform, version: version) do |node|
+          ChefSpec::SoloRunner.new(platform: platform, version: version, file_cache_path: '/var/chef/cache') do |node|
             node.set['collectd']['plugins'] = {
               'cpu' => {},
               'disk' => {},
