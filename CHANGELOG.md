@@ -1,3 +1,7 @@
+## v1.1.0:
+
+- Add support for ChefSpec.
+
 ## v1.0.0:
 
 - Make use of `use_inline_resources` in resource providers. This change breaks

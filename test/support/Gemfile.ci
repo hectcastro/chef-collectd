@@ -1,4 +1,6 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem "rake"
-gem "foodcritic"
+gem 'rake'
+gem 'foodcritic', '4.0.0'
+gem 'chefspec', '4.2.0'
+gem 'berkshelf', '3.2.3'
