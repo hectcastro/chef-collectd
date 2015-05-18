@@ -1,3 +1,5 @@
+include_recipe 'collectd::default'
+
 # treat the graphite plugin specially: set address from search or attributes
 if node["collectd"]["plugins"].key?("write_graphite")
   if node["collectd"]["graphite_ipaddress"].empty?
