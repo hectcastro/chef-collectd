@@ -1,4 +1,4 @@
-include_recipe 'collectd::default'
+include_recipe 'collectd::_service'
 
 # treat the graphite plugin specially: set address from search or attributes
 if node["collectd"]["plugins"].key?("write_graphite")
