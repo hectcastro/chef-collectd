@@ -111,7 +111,4 @@ directory "#{node["collectd"]["dir"]}/etc/conf.d" do
   action :create
 end
 
-service "collectd" do
-  supports :status => true, :restart => true
-  action [ :enable, :start ]
-end
+include_recipe 'collectd::_service'
