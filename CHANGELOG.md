@@ -1,3 +1,8 @@
+## v1.1.1:
+
+- Fix regression in ability to install and configure using `packages` recipe
+  with `attribute_driven`.
+
 ## v1.1.0:
 
 - Add support for ChefSpec.
