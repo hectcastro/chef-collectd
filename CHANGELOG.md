@@ -1,3 +1,7 @@
+## v1.1.2:
+
+- Fix syntax error in `packages` recipe.
+
 ## v1.1.1:
 
 - Fix regression in ability to install and configure using `packages` recipe
