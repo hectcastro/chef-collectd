@@ -19,8 +19,8 @@ platforms:
 suites:
 - name: default
   run_list:
-  - recipe[collectd]
-  - recipe[collectd::attribute_driven]
+  - recipe[collectd-ng]
+  - recipe[collectd-ng::attribute_driven]
   attributes:
     collectd:
       version: 5.4.1

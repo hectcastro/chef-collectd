@@ -7,7 +7,7 @@ execute "remove_collectd" do
   action :run
 end
 
-include_recipe "collectd"
+include_recipe "collectd-ng"
 
 ruby_block "remove_recipe_collectd_recompile" do
   block { node.run_list.remove("recipe[collectd::recompile]") }

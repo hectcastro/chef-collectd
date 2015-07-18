@@ -1,4 +1,4 @@
-include_recipe 'collectd::_service'
+include_recipe 'collectd-ng::_service'
 
 # treat the graphite plugin specially: set address from search or attributes
 if node["collectd"]["plugins"].key?("write_graphite")
@@ -23,7 +23,7 @@ end
 # flush all of configuration to conf.d/
 node["collectd"]["plugins"].each_pair do |plugin_key, definition|
   # Graphite auto-discovery
-  collectd_plugin plugin_key.to_s do
+  collectd_ng_plugin plugin_key.to_s do
     config definition["config"].to_hash if definition["config"]
     template definition["template"].to_s if definition["template"]
     cookbook definition["cookbook"].to_s if definition["cookbook"]
@@ -34,7 +34,7 @@ end
 # flush all of configuration to conf.d/
 node["collectd"]["python_plugins"].each_pair do |plugin_key, definition|
   # Graphite auto-discovery
-  collectd_python_plugin plugin_key.to_s do
+  collectd_ng_python_plugin plugin_key.to_s do
     typesdb definition["typesdb"].to_s if definition["typesdb"]
     config definition["config"].to_hash
     module_config definition["module_config"].to_hash

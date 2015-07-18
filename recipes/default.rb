@@ -116,4 +116,4 @@ directory "#{node["collectd"]["dir"]}/etc/conf.d" do
   action :create
 end
 
-include_recipe 'collectd::_service'
+include_recipe 'collectd-ng::_service'

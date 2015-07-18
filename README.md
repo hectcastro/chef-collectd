@@ -1,4 +1,4 @@
-# collectd [![Build Status](https://secure.travis-ci.org/hectcastro/chef-collectd.png?branch=master)](http://travis-ci.org/hectcastro/chef-collectd)
+# collectd-ng [![Build Status](https://secure.travis-ci.org/hectcastro/chef-collectd-ng.png?branch=develop)](http://travis-ci.org/hectcastro/chef-collectd-ng)
 
 ## Description
 
@@ -23,11 +23,18 @@ work done by [coderanger](https://github.com/coderanger/chef-collectd) and
 
 * `node["collectd"]["version"]` - Version of collectd to install.
 * `node["collectd"]["dir"]` - Base directory for collectd.
+* `node["collectd"]["plugins_conf_dir"]`- Plugin directory for collectd.
 * `node["collectd"]["url"]` - URL to the collectd archive.
 * `node["collectd"]["checksum"]` - Checksum for the collectd archive.
 * `node["collectd"]["interval"]` - Number of seconds to wait between data reads.
 * `node["collectd"]["read_threads"]` - Number of threads performing data reads.
+* `node["collectd"]["write_queue_limit_high"]` - Upper bound on write queue size.
+* `node["collectd"]["write_queue_limit_low"]` - Lower bound on write queue size.
+* `node["collectd"]["collect_internal_stats"]` - Flag to collect internal
+  collectd statistics.
 * `node["collectd"]["name"]` - Name of the node reporting statstics.
+* `node["collectd"]["fqdnlookup"]` - Flag to determine if the node should
+  determine its own FQDN.
 * `node["collectd"]["plugins"]` - Mash of plugins for installation.
 * `node["collectd"]["python_plugins"]` - Mash of Python plugins for installation.
 * `node["collectd"]["plugins_conf_dir"]` - Directory for collectd plugins configuration files.
@@ -45,7 +52,7 @@ work done by [coderanger](https://github.com/coderanger/chef-collectd) and
   packages.
 * `recipe[collectd::recompile]` will attempt to recompile collectd.
 
-**Note**: You need to include the default `recipe[collectd]` when using `recipe[collectd:attribute_driven]` to install `collectd`.
+**Note**: You need to include the default `recipe[collectd-ng]` when using `recipe[collectd-ng:attribute_driven]` to install `collectd`.
 
 ## Usage
 
