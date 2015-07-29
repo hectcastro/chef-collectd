@@ -32,6 +32,7 @@ if node["collectd"]["plugins"]
     plugin_support_packages << "perl-devel" if plugins.include?("perl")
     plugin_support_packages << "postgresql-devel" if plugins.include?("postgresql")
     plugin_support_packages << "python-devel" if plugins.include?("python")
+    plugin_support_packages << "hiredis" if plugins.include?("redis")
     plugin_support_packages << "rrdtool-devel" if plugins.include?("rrdcached") ||
       plugins.include?("rrdtool")
     plugin_support_packages << "varnish-libs-devel" if plugins.include?("varnish")
@@ -51,6 +52,7 @@ if node["collectd"]["plugins"]
     plugin_support_packages << "libpcap0.8-dev" if plugins.include?("dns")
     plugin_support_packages << "libperl-dev" if plugins.include?("perl")
     plugin_support_packages << "python-dev" if plugins.include?("python")
+    plugin_support_packages << "libhiredis-dev" if plugins.include?("redis")
     plugin_support_packages << "librrd-dev" if plugins.include?("rrdcached") ||
       plugins.include?("rrdtool")
     plugin_support_packages << "libvirt-dev" if plugins.include?("virt")
