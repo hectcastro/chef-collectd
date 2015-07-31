@@ -1,3 +1,7 @@
+## v1.2.0:
+
+- Add support for `redis` plugin.
+
 ## v1.1.2:
 
 - Fix syntax error in `packages` recipe.
