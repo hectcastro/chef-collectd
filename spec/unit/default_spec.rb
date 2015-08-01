@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'collectd::default' do
+describe 'collectd-ng::default' do
   platforms = {
     'ubuntu' => {
       'versions' => ['12.04', '14.04']
