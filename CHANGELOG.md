@@ -1,3 +1,7 @@
+## v1.2.1:
+
+- Fix syntax error in `collectd_plugin` delete action.
+
 ## v1.2.0:
 
 - Add support for `redis` plugin.

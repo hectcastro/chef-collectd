@@ -15,8 +15,8 @@ action :create do
 end
 
 action :delete do
-  file "#{new_resource.name} :delete #{node["collectd"]["plugins_conf_dir"]}/#{new_resource.name}.conf}"
-    path ::File.join(node["collectd"]["plugins_conf_dir"], "#{new_resource.name}.conf") do
+  file "#{new_resource.name} :delete #{node["collectd"]["plugins_conf_dir"]}/#{new_resource.name}.conf}" do
+    path ::File.join(node["collectd"]["plugins_conf_dir"], "#{new_resource.name}.conf")
     action :delete
   end
 end
