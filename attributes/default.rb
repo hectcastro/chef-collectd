@@ -7,6 +7,7 @@ default["collectd"]["interval"]           = 10
 default["collectd"]["read_threads"]       = 5
 default['collectd']['WriteQueueLimitHigh'] = 2_000_000
 default['collectd']['WriteQueueLimitLow'] = 1_800_000
+default['collectd']['CollectInternalStats'] = 'false'
 default["collectd"]["name"]               = node["fqdn"]
 default["collectd"]["fqdnlookup"]         = true
 default["collectd"]["plugins"]            = Mash.new
