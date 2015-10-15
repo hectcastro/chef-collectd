@@ -10,9 +10,9 @@ PluginDir "<%= @dir %>/lib/collectd"
 TypesDB "<%= @dir %>/share/collectd/types.db"
 Interval <%= @interval %>
 ReadThreads <%= @read_threads %>
-WriteQueueLimitHigh <%= @WriteQueueLimitHigh %>
-WriteQueueLimitLow <%= @WriteQueueLimitLow %>
-CollectInternalStats <%= @CollectInternalStats %>
+WriteQueueLimitHigh <%= @write_queue_limit_high %>
+WriteQueueLimitLow <%= @write_queue_limit_low %>
+CollectInternalStats <%= @collect_internal_stats %>
 
 <% unless @plugins.empty? %>
 Include "<%= @dir %>/etc/conf.d/*.conf"
