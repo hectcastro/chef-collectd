@@ -14,6 +14,12 @@ describe 'default' do
       expect(file "/opt/collectd/etc/conf.d/#{plugin}.conf").to be_file
     end
   end
+  it 'does not create disabled attribute-driven plugins' do
+    plugins = %w(load)
+    plugins.each do |plugin|
+      expect(file "/opt/collectd/etc/conf.d/#{plugin}.conf").to_not be_a_file
+    end
+  end
   describe file('/opt/collectd/etc/conf.d/write_graphite.conf') do
     it { should be_a_file }
     its(:content) { should include 'Host "localhost"' }

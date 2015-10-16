@@ -22,11 +22,14 @@ end
 
 # flush all of configuration to conf.d/
 node["collectd"]["plugins"].each_pair do |plugin_key, definition|
+  enabled = (definition["enable"].nil? || definition["enable"] == true)
+
   # Graphite auto-discovery
   collectd_plugin plugin_key.to_s do
     config definition["config"].to_hash if definition["config"]
     template definition["template"].to_s if definition["template"]
     cookbook definition["cookbook"].to_s if definition["cookbook"]
+    action enabled ? :create : :delete
     notifies :restart, "service[collectd]"
   end
 end
