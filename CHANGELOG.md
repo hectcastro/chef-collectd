@@ -1,3 +1,8 @@
+## 1.3.0:
+
+- Add support for setting `write_queue_limit_high`, `write_queue_limit_low`, and
+  `collect_internal_stats`
+
 ## v1.2.1:
 
 - Fix syntax error in `collectd_plugin` delete action.
