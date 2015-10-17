@@ -104,6 +104,9 @@ template "#{node["collectd"]["dir"]}/etc/collectd.conf" do
     :dir          => node["collectd"]["dir"],
     :interval     => node["collectd"]["interval"],
     :read_threads => node["collectd"]["read_threads"],
+    :write_queue_limit_high => node["collectd"]["write_queue_limit_high"],
+    :write_queue_limit_low => node["collectd"]["write_queue_limit_low"],
+    :collect_internal_stats => node["collectd"]["collect_internal_stats"],
     :plugins      => node["collectd"]["plugins"]
   )
   notifies :restart, "service[collectd]"
