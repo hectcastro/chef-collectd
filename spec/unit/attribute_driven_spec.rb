@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'collectd::attribute_driven' do
+describe 'collectd-ng::attribute_driven' do
   platforms = {
     'ubuntu' => {
       'versions' => ['12.04', '14.04']
@@ -32,8 +32,8 @@ describe 'collectd::attribute_driven' do
           stub_command('/opt/collectd/sbin/collectd -h 2>&1 | grep 5.4.1').and_return(true)
         end
         it 'creates some plugins' do
-          expect(chef_run).to create_collectd_plugin('cpu')
-          expect(chef_run).to create_collectd_plugin('interface').with(
+          expect(chef_run).to create_collectd_ng_plugin('cpu')
+          expect(chef_run).to create_collectd_ng_plugin('interface').with(
             'config' => {
               'Interface' => 'lo',
               'IgnoreSelected' => true
