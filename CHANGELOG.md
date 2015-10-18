@@ -1,3 +1,8 @@
+## 2.0.0:
+
+- Rename cookbook to `collectd-ng`.
+- Add to [Chef Supermarket](https://supermarket.chef.io/cookbooks/collectd-ng).
+
 ## 1.3.0:
 
 - Add support for setting `write_queue_limit_high`, `write_queue_limit_low`, and
