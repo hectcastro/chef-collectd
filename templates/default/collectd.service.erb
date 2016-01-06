@@ -1,0 +1,15 @@
+[Unit]
+Description=statistics collection daemon
+Documentation=man:collectd(1)
+After=local-fs.target network.target
+Requires=local-fs.target network.target
+
+[Service]
+ExecStart=<%= @dir %>/sbin/collectd -C <%= @dir %>/etc/collectd.conf  -f
+Restart=always
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
