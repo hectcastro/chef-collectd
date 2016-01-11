@@ -1,4 +1,4 @@
-# collectd-ng [![Build Status](https://secure.travis-ci.org/hectcastro/chef-collectd-ng.png?branch=develop)](http://travis-ci.org/hectcastro/chef-collectd-ng)
+# collectd-ng [![Build Status](https://secure.travis-ci.org/hectcastro/chef-collectd.png?branch=develop)](http://travis-ci.org/hectcastro/chef-collectd)
 
 ## Description
 
@@ -11,8 +11,10 @@ work done by [coderanger](https://github.com/coderanger/chef-collectd) and
 ### Platforms
 
 * Amazon 2012.09
-* CentOS 6.5
+* CentOS 6
+* CentOS 7
 * Ubuntu 12.04
+* Ubuntu 14.04
 
 ### Cookbooks
 
