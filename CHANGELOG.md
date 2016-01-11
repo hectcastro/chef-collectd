@@ -1,3 +1,7 @@
+## 2.1.0:
+
+- Add systemd support for RHEL 7.x.
+
 ## 2.0.0:
 
 - Rename cookbook to `collectd-ng`.

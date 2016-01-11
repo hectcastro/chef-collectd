@@ -93,6 +93,16 @@ template "/etc/init.d/collectd" do
     :dir => node["collectd"]["dir"]
   )
   notifies :restart, "service[collectd]"
+  not_if { node["init_package"] == "systemd" }
+end
+
+template "/usr/lib/systemd/system/collectd.service" do
+  mode "0644"
+  variables(
+    :dir => node["collectd"]["dir"]
+  )
+  notifies :restart, "service[collectd]"
+  only_if { node["init_package"] == "systemd" }
 end
 
 template "#{node["collectd"]["dir"]}/etc/collectd.conf" do
