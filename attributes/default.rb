@@ -1,4 +1,4 @@
-default["collectd"]["version"]            = "5.4.1"
+default["collectd"]["version"]            = "5.4.1*"
 default["collectd"]["install_method"]     = "ppa"
 default["collectd"]["dir"]                = "/opt/collectd"
 default["collectd"]["plugins_conf_dir"]    = ::File.join(node["collectd"]["dir"], "etc", "conf.d")
