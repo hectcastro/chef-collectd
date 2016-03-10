@@ -64,7 +64,7 @@ if node["collectd"]["plugins"]
   end
 end
 
-include_recipe "install_from_#{node['collectd']['install_method']}"
+include_recipe "collectd-ng::install_from_#{node['collectd']['install_method']}"
 
 template "/etc/init.d/collectd" do
   mode "0744"
