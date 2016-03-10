@@ -24,6 +24,7 @@ work done by [coderanger](https://github.com/coderanger/chef-collectd) and
 ## Attributes
 
 * `node["collectd"]["version"]` - Version of collectd to install.
+* `node["collectd"]["install_method"]` - How to install: 'ppa' or 'source'
 * `node["collectd"]["dir"]` - Base directory for collectd.
 * `node["collectd"]["plugins_conf_dir"]`- Plugin directory for collectd.
 * `node["collectd"]["url"]` - URL to the collectd archive.
@@ -48,10 +49,8 @@ work done by [coderanger](https://github.com/coderanger/chef-collectd) and
 
 ## Recipes
 
-* `recipe[collectd]` will install collectd from source.
+* `recipe[collectd]` will install collectd.
 * `recipe[collectd::attribute_driven]` will install collectd via node attributes.
-* `recipe[collectd::packages]` will install collectd (and other plugins) from
-  packages.
 * `recipe[collectd::recompile]` will attempt to recompile collectd.
 
 **Note**: You need to include the default `recipe[collectd-ng]` when using `recipe[collectd-ng:attribute_driven]` to install `collectd`.
