@@ -9,10 +9,6 @@ recipe            "collectd::attribute_driven", "Installs collectd plugins via n
 recipe            "collectd::packages", "Installs collectd via packages"
 recipe            "collectd::recompile", "Attempts to recompile collectd"
 
-%w{ build-essential yum-epel }.each do |d|
-  depends d
-end
-
 %w{ amazon centos fedora redhat scientific ubuntu }.each do |os|
   supports os
 end
