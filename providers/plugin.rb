@@ -1,7 +1,7 @@
 use_inline_resources
 
 action :create do
-  template ::File.join(node["collectd"]["plugins_conf_dir"], "#{new_resource.name}.conf") do
+  template ::File.join(node["collectd"]["config_dir"][node['collectd']['install_method']], "#{new_resource.name}.conf") do
     owner "root"
     group "root"
     mode "644"
@@ -15,8 +15,8 @@ action :create do
 end
 
 action :delete do
-  file "#{new_resource.name} :delete #{node["collectd"]["plugins_conf_dir"]}/#{new_resource.name}.conf}" do
-    path ::File.join(node["collectd"]["plugins_conf_dir"], "#{new_resource.name}.conf")
+  file "#{new_resource.name} :delete #{node["collectd"]["config_dir"][node['collectd']['install_method']]}/#{new_resource.name}.conf}" do
+    path ::File.join(node["collectd"]["config_dir"][node['collectd']['install_method']], "#{new_resource.name}.conf")
     action :delete
   end
 end

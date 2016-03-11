@@ -66,37 +66,13 @@ end
 
 include_recipe "collectd-ng::install_from_#{node['collectd']['install_method']}"
 
-template "/etc/init.d/collectd" do
-  mode "0744"
-  case node["platform_family"]
-  when "rhel"
-    source "collectd.init-rhel.erb"
-  else
-    source "collectd.init.erb"
-  end
-  variables(
-    :dir => node["collectd"]["dir"]
-  )
-  notifies :restart, "service[collectd]"
-  not_if { node["init_package"] == "systemd" }
-end
-
-template "/usr/lib/systemd/system/collectd.service" do
-  mode "0644"
-  variables(
-    :dir => node["collectd"]["dir"]
-  )
-  notifies :restart, "service[collectd]"
-  only_if { node["init_package"] == "systemd" }
-end
-
-template "#{node["collectd"]["dir"]}/etc/collectd.conf" do
+template "#{node["collectd"]["config_dir"][node['collectd']['install_method']]}/collectd.conf" do
   mode "0644"
   source "collectd.conf.erb"
   variables(
     :name         => node["collectd"]["name"],
     :fqdnlookup   => node["collectd"]["fqdnlookup"],
-    :dir          => node["collectd"]["dir"],
+    :dir          => node["collectd"]["config_dir"][node['collectd']['install_method']],
     :interval     => node["collectd"]["interval"],
     :read_threads => node["collectd"]["read_threads"],
     :write_queue_limit_high => node["collectd"]["write_queue_limit_high"],
@@ -105,10 +81,6 @@ template "#{node["collectd"]["dir"]}/etc/collectd.conf" do
     :plugins      => node["collectd"]["plugins"]
   )
   notifies :restart, "service[collectd]"
-end
-
-directory "#{node["collectd"]["dir"]}/etc/conf.d" do
-  action :create
 end
 
 include_recipe 'collectd-ng::_service'

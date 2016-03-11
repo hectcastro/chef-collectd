@@ -44,7 +44,7 @@ node["collectd"]["python_plugins"].each_pair do |plugin_key, definition|
   end
 end
 
-conf_d  = "#{node["collectd"]["dir"]}/etc/conf.d"
+conf_d  = "#{node["collectd"]["config_dir"][node['collectd']['install_method']]}/etc/conf.d"
 keys    = node["collectd"]["plugins"].keys.collect { |k| k.to_s }
 keys.concat(node["collectd"]["python_plugins"].keys.collect { |k| k.to_s })
 
