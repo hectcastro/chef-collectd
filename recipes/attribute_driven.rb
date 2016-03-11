@@ -20,7 +20,7 @@ if node["collectd"]["plugins"].key?("write_graphite")
   node.default["collectd"]["plugins"]["write_graphite"]["config"]["Port"] = 2003
 end
 
-# flush all of configuration to conf.d/
+# flush all of configuration to collectd.conf.d/
 node["collectd"]["plugins"].each_pair do |plugin_key, definition|
   # Graphite auto-discovery
   collectd_ng_plugin plugin_key.to_s do
@@ -31,7 +31,7 @@ node["collectd"]["plugins"].each_pair do |plugin_key, definition|
   end
 end
 
-# flush all of configuration to conf.d/
+# flush all of configuration to collectd.conf.d/
 node["collectd"]["python_plugins"].each_pair do |plugin_key, definition|
   # Graphite auto-discovery
   collectd_ng_python_plugin plugin_key.to_s do
@@ -44,7 +44,7 @@ node["collectd"]["python_plugins"].each_pair do |plugin_key, definition|
   end
 end
 
-conf_d  = "#{node["collectd"]["config_dir"][node['collectd']['install_method']]}/etc/conf.d"
+conf_d  = "#{node["collectd"]["config_dir"][node['collectd']['install_method']]}/collectd.conf.d"
 keys    = node["collectd"]["plugins"].keys.collect { |k| k.to_s }
 keys.concat(node["collectd"]["python_plugins"].keys.collect { |k| k.to_s })
 

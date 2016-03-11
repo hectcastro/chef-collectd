@@ -17,5 +17,5 @@ WriteQueueLimitLow <%= @write_queue_limit_low %>
 CollectInternalStats <%= @collect_internal_stats %>
 
 <% unless @plugins.empty? %>
-Include "<%= @dir %>/etc/conf.d/*.conf"
+Include "<%= @dir %>/collectd.conf.d/*.conf"
 <% end %>

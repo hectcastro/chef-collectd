@@ -39,7 +39,7 @@ template "/usr/lib/systemd/system/collectd.service" do
   only_if { node["init_package"] == "systemd" }
 end
 
-directory "#{node["collectd"]["config_dir"]["source"]}/etc/conf.d" do
+directory "#{node["collectd"]["config_dir"]["source"]}/collectd.conf.d" do
   action :create
   recursive true
 end
