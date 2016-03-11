@@ -48,6 +48,13 @@ when "debian"
     plugins.include?("rrdtool")
   plugin_support_packages << "libvirt-dev" if plugins.include?("virt")
   plugin_support_packages << "libxml2-dev" if plugins.include?("ascent") ||
+  plugins.include?("virt")
+  plugin_support_packages << "libyajl-dev" if plugins.include?("curl_json")
+end
+
+plugin_support_packages.each do |pkg|
+    package pkg
+end
 
 # treat the graphite plugin specially: set address from search or attributes
 if node["collectd"]["plugins"].key?("write_graphite")
