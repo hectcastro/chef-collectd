@@ -49,10 +49,8 @@ work done by [coderanger](https://github.com/coderanger/chef-collectd) and
 ## Recipes
 
 * `recipe[collectd]` will install collectd.
-* `recipe[collectd::attribute_driven]` will install collectd via node attributes.
+* `recipe[collectd::plugins]` will install collectd plugins via node attributes.
 * `recipe[collectd::recompile]` will attempt to recompile collectd.
-
-**Note**: You need to include the default `recipe[collectd-ng]` when using `recipe[collectd-ng:attribute_driven]` to install `collectd`.
 
 ## Usage
 
