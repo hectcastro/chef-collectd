@@ -3,7 +3,7 @@ service "collectd" do
 end
 
 execute "remove_collectd" do
-  command "rm -rf #{node["collectd"]["dir"]}"
+  command "rm -rf #{node["collectd"]["install_dir"]}"
   action :run
 end
 

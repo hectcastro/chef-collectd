@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'collectd-ng::attribute_driven' do
+describe 'collectd-ng::plugins' do
   platforms = {
     'ubuntu' => {
       'versions' => ['12.04', '14.04']
