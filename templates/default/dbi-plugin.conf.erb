@@ -24,9 +24,12 @@ LoadPlugin "<%= @name %>"
   <Database "<%= db_name %>">
     <% db_details.each_pair do |key, value|
       if value.is_a? Array
-        value.each do |subvalue| %>
+        value.each do |subvalue|
+          if key == "DriverOption" %>
+    <%= key %> <%= subvalue %>
+        <% else %>
     <%= key %> <%= collectd_option(subvalue) %>
-    <% end else %>
+    <% end end else %>
     <%= key %> <%= collectd_option(value) %>
     <% end end %>
   </Database>
