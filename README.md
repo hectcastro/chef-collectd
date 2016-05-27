@@ -24,8 +24,9 @@ work done by [coderanger](https://github.com/coderanger/chef-collectd) and
 ## Attributes
 
 * `node["collectd"]["version"]` - Version of collectd to install.
-* `node["collectd"]["dir"]` - Base directory for collectd.
-* `node["collectd"]["plugins_conf_dir"]`- Plugin directory for collectd.
+* `node["collectd"]["install_method"]` - How to install: 'ppa' or 'source'
+* `node["collectd"]["install_dir"]` - Base directory for collectd when installed from source.
+* `node["collectd"]["config_dir"]` - Hash of directory paths for collectd config per install method.
 * `node["collectd"]["url"]` - URL to the collectd archive.
 * `node["collectd"]["checksum"]` - Checksum for the collectd archive.
 * `node["collectd"]["interval"]` - Number of seconds to wait between data reads.
@@ -39,7 +40,6 @@ work done by [coderanger](https://github.com/coderanger/chef-collectd) and
   determine its own FQDN.
 * `node["collectd"]["plugins"]` - Mash of plugins for installation.
 * `node["collectd"]["python_plugins"]` - Mash of Python plugins for installation.
-* `node["collectd"]["plugins_conf_dir"]` - Directory for collectd plugins configuration files.
 * `node["collectd"]["graphite_role"]` – Role assigned to Graphite server for
   search.
 * `node["collectd"]["graphite_ipaddress"]` – IP address to Graphite server if
@@ -48,13 +48,9 @@ work done by [coderanger](https://github.com/coderanger/chef-collectd) and
 
 ## Recipes
 
-* `recipe[collectd]` will install collectd from source.
-* `recipe[collectd::attribute_driven]` will install collectd via node attributes.
-* `recipe[collectd::packages]` will install collectd (and other plugins) from
-  packages.
+* `recipe[collectd]` will install collectd.
+* `recipe[collectd::plugins]` will install collectd plugins via node attributes.
 * `recipe[collectd::recompile]` will attempt to recompile collectd.
-
-**Note**: You need to include the default `recipe[collectd-ng]` when using `recipe[collectd-ng:attribute_driven]` to install `collectd`.
 
 ## Usage
 

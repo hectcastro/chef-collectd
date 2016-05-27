@@ -1,7 +1,7 @@
 use_inline_resources
 
 action :create do
-  template ::File.join(node["collectd"]["plugins_conf_dir"], "#{new_resource.name}.conf") do
+  template ::File.join(node["collectd"]["config_dir"][node['collectd']['install_method']], "#{new_resource.name}.conf") do
     owner "root"
     group "root"
     mode "644"

@@ -11,10 +11,10 @@ describe 'default' do
   it 'creates attribute-driven plugins' do
     plugins = %w(cpu df disk interface memory swap syslog)
     plugins.each do |plugin|
-      expect(file "/opt/collectd/etc/conf.d/#{plugin}.conf").to be_file
+      expect(file "/opt/collectd/etc/collectd.conf.d/#{plugin}.conf").to be_file
     end
   end
-  describe file('/opt/collectd/etc/conf.d/write_graphite.conf') do
+  describe file('/opt/collectd/etc/collectd.conf.d/write_graphite.conf') do
     it { should be_a_file }
     its(:content) { should include 'Host "localhost"' }
     its(:content) { should include 'Port 2003' }

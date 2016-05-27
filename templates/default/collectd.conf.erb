@@ -5,9 +5,11 @@
 
 Hostname "<%= @name %>"
 FQDNLookup <%= @fqdnlookup %>
+<% if node['collectd']['install_method'] == "source" %>
 BaseDir "<%= @dir %>"
 PluginDir "<%= @dir %>/lib/collectd"
 TypesDB "<%= @dir %>/share/collectd/types.db"
+<% end -%>
 Interval <%= @interval %>
 ReadThreads <%= @read_threads %>
 WriteQueueLimitHigh <%= @write_queue_limit_high %>
@@ -15,5 +17,5 @@ WriteQueueLimitLow <%= @write_queue_limit_low %>
 CollectInternalStats <%= @collect_internal_stats %>
 
 <% unless @plugins.empty? %>
-Include "<%= @dir %>/etc/conf.d/*.conf"
+Include "<%= @dir %>/collectd.conf.d/*.conf"
 <% end %>
