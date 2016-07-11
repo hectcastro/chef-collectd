@@ -1,0 +1,83 @@
+#!/sbin/sh
+#
+# collectd    Startup script for the Collectd statistics gathering daemon
+# chkconfig: - 86 15
+# description: Collectd is a statistics gathering daemon used to collect \
+#   system information ie. cpu, memory, disk, network
+# processname: collectd
+# config: /opt/collectd/etc/collectd.conf
+# config: /etc/sysconfig/collectd
+# pidfile: /var/run/collectd.pid
+
+PROG=<%= @name %>
+DAEMON=<%= @daemon_path %>
+PIDFILE="/var/run/${PROG}.pid"
+CONFIG=<%= @conf_path %>
+ARGS="-C ${CONFIG} -P ${PIDFILE}"
+
+if [ -r /etc/default/$PROG ]; then
+  . /etc/default/$PROG
+fi
+
+start() {
+  echo -n $"Starting $PROG: "
+  if [ -r "$CONFIG" ]
+  then
+    nohup $DAEMON $ARGS > /dev/null 2>&1 &
+    PID=$!
+    if [ -z $PID ]; then
+        printf "%s\n" "Failed to start $PROG"
+        exit 2
+    else
+        echo $PID > $PIDFILE
+        printf "%s\n" "Success"
+    fi
+  fi
+}
+
+status() {
+  if [ -f "$PIDFILE" ] ; then
+    pid=`cat "$PIDFILE"`
+    if kill -0 $pid > /dev/null 2> /dev/null ; then
+      # process by this pid is running.
+      # It may not be our pid, but that's what you get with just pidfiles.
+      return 0
+    else
+      return 2 # program is dead but pid file exists
+    fi
+  else
+    return 3 # program is not running
+  fi
+}
+
+stop() {
+  if status ; then
+    echo -n $"Stopping $PROG: "
+    pid=`cat "$PIDFILE"`
+    kill $pid
+    retval=$?
+    echo
+    [ $retval -eq 0 ] && rm -f $PIDFILE
+    return $retval
+  else
+    echo "$PROG not running"
+  fi
+}
+
+# See how we were called.
+case "$1" in
+  start)
+  $1
+  ;;
+  stop)
+  $1
+  ;;
+  status)
+  $1
+  ;;
+  *)
+  echo $"Usage: $0 {start|stop|status}"
+  exit 1
+esac
+
+exit $?

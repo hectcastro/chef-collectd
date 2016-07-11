@@ -1,0 +1,26 @@
+#!/bin/ksh
+
+PATH=$PATH:<%= @solaris_studio %>
+
+LD_LIBRARY_PATH=<%= @ld_library_paths %>
+
+CC=cc
+CXX=CC
+CFLAGS=<%= @cflags %>
+CXXFLAGS="$CFLAGS"
+
+export CC CXX CFLAGS CXXFLAGS LD_LIBRARY_PATH
+
+{
+
+	./configure	--prefix=<%= @dir %>
+
+
+	if [[ -f ./libtool ]]; then
+		\rm -f libtool
+		ln -s /usr/bin/libtool libtool
+	fi
+
+	make all install
+
+}

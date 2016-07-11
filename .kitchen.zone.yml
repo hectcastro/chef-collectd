@@ -1,0 +1,45 @@
+driver:
+  name: zone
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: 12.3.0
+
+platforms:
+  - name: solaris-11-i86pc
+    provisioner:
+      sudo_command: 'sudo -E'
+    verifier:
+      sudo_command: 'sudo -E'
+    driver:
+      global_zone_hostname: '<your-global-zone-hostname>'
+      global_zone_user: '<your-global-zone-username>'
+      global_zone_password: '<your-global-zone-password>'
+      test_zone_ip: '<test-zone-ip-you-want>'
+suites:
+  - name: default
+    run_list:
+      - recipe[collectd-ng]
+      - recipe[collectd-ng::attribute_driven]
+    attributes:
+      collectd:
+        version: '5.5.0'
+        checksum: '5f7cfad5b24ed4f8b113cfb270e0f9e5a9f7c3af10443cb507fd40174a6c9028'
+        url: 'http://collectd.org/files/collectd-5.5.0.tar.gz'
+        graphite_ipaddress: localhost
+        plugins:
+          write_graphite:
+            config: { Prefix: "collectd." }
+          syslog:
+            config: { LogLevel: "Info" }
+          disk: { }
+          swap: { }
+          memory: { }
+          cpu: { }
+          interface:
+            config: { Interface: "lo", IgnoreSelected: true }
+          df:
+            config:
+              ReportReserved: false
+              FSType: [ "proc", "sysfs", "fusectl", "debugfs", "devtmpfs", "devpts", "tmpfs" ]
+              IgnoreSelected: true

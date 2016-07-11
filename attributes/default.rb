@@ -14,3 +14,13 @@ default["collectd"]["plugins"]            = Mash.new
 default["collectd"]["python_plugins"]     = Mash.new
 default["collectd"]["graphite_role"]      = "graphite"
 default["collectd"]["graphite_ipaddress"] = ""
+default['collectd']['solaris'] = {
+  'manifest_directory' => '/var/svc/manifest/application',
+  'oracle_key_databag' => 'oracle_key',
+  'oracle_key_databag_entry' => 'not_real',
+  'oracle_key_directory' => '/etc',
+  'studio_version' => '12.4'
+}
+if node['platform_family'] == 'solaris2'
+  node.default['ark']['tar'] = '/bin/gtar'
+end
