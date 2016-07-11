@@ -6,7 +6,6 @@ if node['platform_family'] == 'solaris2'
     action :put
   end
 
-
   cookbook_file "#{Chef::Config[:file_cache_path]}/collectd/src/collectd-tg.c" do
     source 'collectd/collectd-tg.c'
     mode '0755'
