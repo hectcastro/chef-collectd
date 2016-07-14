@@ -37,5 +37,7 @@ if node['platform_family'] == 'solaris2'
     command "pkg set-publisher -k #{node['collectd']['solaris']['oracle_key_directory']}/pkg.oracle.com.key.pem -c #{node['collectd']['solaris']['oracle_key_directory']}/pkg.oracle.com.certificate.pem -G \"*\" -g https://pkg.oracle.com/solarisstudio/release solarisstudio"
   end
 
-  package "solarisstudio-#{solaris_package_version_to_name(node['collectd']['solaris']['studio_version'])}"
+  studio_version = node['collectd']['solaris']['studio_version']
+  package "solarisstudio-#{solaris_package_version_to_name(studio_version)}"
+
 end
