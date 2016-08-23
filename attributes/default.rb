@@ -1,8 +1,4 @@
-default["collectd"]["version"]            = "5.4.1"
-default["collectd"]["dir"]                = "/opt/collectd"
-default["collectd"]["plugins_conf_dir"]    = ::File.join(node["collectd"]["dir"], "etc", "conf.d")
-default["collectd"]["url"]                = "http://collectd.org/files/collectd-#{node["collectd"]["version"]}.tar.gz"
-default["collectd"]["checksum"]           = "853680936893df00bfc2be58f61ab9181fecb1cf45fc5cddcb7d25da98855f65"
+
 default["collectd"]["interval"]           = 10
 default["collectd"]["read_threads"]       = 5
 default["collectd"]["write_queue_limit_high"] = 1_000_000
@@ -14,3 +10,15 @@ default["collectd"]["plugins"]            = Mash.new
 default["collectd"]["python_plugins"]     = Mash.new
 default["collectd"]["graphite_role"]      = "graphite"
 default["collectd"]["graphite_ipaddress"] = ""
+
+default["collectd"]["source"]["version"]            = "5.4.1"
+default["collectd"]["source"]["dir"]                = "/opt/collectd"
+default["collectd"]["source"]["config_file"]        = ::File.join(node["collectd"]["dir"], "etc", "collectd.conf")
+default["collectd"]["source"]["plugins_conf_dir"]   = ::File.join(node["collectd"]["dir"], "etc", "conf.d")
+default["collectd"]["source"]["url"]                = "http://collectd.org/files/collectd-#{node["collectd"]["version"]}.tar.gz"
+default["collectd"]["source"]["checksum"]           = "853680936893df00bfc2be58f61ab9181fecb1cf45fc5cddcb7d25da98855f65"
+
+default["collectd"]["package"]["dir"]               = "/var/lib/collectd"
+default["collectd"]["package"]["config_file"]       = "/etc/collectd.conf"
+default["collectd"]["package"]["plugins_conf_dir"]  = "/etc/collectd.d"
+
