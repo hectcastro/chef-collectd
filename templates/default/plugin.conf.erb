@@ -6,7 +6,7 @@ LoadPlugin "<%= @name %>"
 
 <% if not @config.empty? %>
 <Plugin "<%= @name %>">
-  <%= "<Carbon>" if @name == "write_graphite" %>
+  <%= "<Node>" if @name == "write_graphite" %>
   <%= "<URL #{collectd_option(@config.delete("URL"))}>" if @name == "write_http" %>
   <% @config.each_pair do |key, value|
     if value.is_a? Array
@@ -15,7 +15,7 @@ LoadPlugin "<%= @name %>"
   <% end else %>
   <%= key %> <%= collectd_option(value) %>
   <% end end %>
-  <%= "</Carbon>" if @name == "write_graphite" %>
+  <%= "</Node>" if @name == "write_graphite" %>
   <%= "</URL >" if @name == "write_http" %>
 </Plugin>
 <% end %>
