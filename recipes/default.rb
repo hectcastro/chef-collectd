@@ -122,7 +122,7 @@ template "#{node["collectd"]["dir"]}/etc/collectd.conf" do
   notifies :restart, "service[collectd]"
 end
 
-directory "#{node["collectd"]["dir"]}/etc/conf.d" do
+directory node["collectd"]["plugins_conf_dir"] do
   action :create
 end
 
