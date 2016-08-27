@@ -76,9 +76,9 @@ bash "install-collectd" do
   cwd Chef::Config[:file_cache_path]
   code <<-EOH
     tar -xzf collectd-#{node["collectd"]["version"]}.tar.gz
-    (cd collectd-#{node["collectd"]["version"]} && ./configure --prefix=#{node["collectd"]["dir"]} && make && make install)
+    (cd collectd-#{node["collectd"]["version"]} && ./configure --prefix=#{node["collectd"]["source"]["base_dir"]} && make && make install)
   EOH
-  not_if "#{node["collectd"]["dir"]}/sbin/collectd -h 2>&1 | grep #{node["collectd"]["version"]}"
+  not_if "#{node["collectd"]["source"]["base_dir"]}/sbin/collectd -h 2>&1 | grep #{node["collectd"]["version"]}"
 end
 
 template "/etc/init.d/collectd" do
@@ -90,7 +90,7 @@ template "/etc/init.d/collectd" do
     source "collectd.init.erb"
   end
   variables(
-    :dir => node["collectd"]["dir"]
+    :dir => node["collectd"]["source"]["base_dir"]
   )
   notifies :restart, "service[collectd]"
   not_if { node["init_package"] == "systemd" }
@@ -99,19 +99,22 @@ end
 template "/usr/lib/systemd/system/collectd.service" do
   mode "0644"
   variables(
-    :dir => node["collectd"]["dir"]
+    :dir => node["collectd"]["source"]["base_dir"]
   )
   notifies :restart, "service[collectd]"
   only_if { node["init_package"] == "systemd" }
 end
 
-template "#{node["collectd"]["dir"]}/etc/collectd.conf" do
+template node["collectd"]["source"]["config_file"] do
   mode "0644"
   source "collectd.conf.erb"
   variables(
     :name         => node["collectd"]["name"],
     :fqdnlookup   => node["collectd"]["fqdnlookup"],
-    :dir          => node["collectd"]["dir"],
+    :base_dir     => node["collectd"]["source"]["base_dir"],
+    :plugins_conf_dir  => node["collectd"]["source"]["plugins_conf_dir"],
+    :plugins_dir  => node["collectd"]["source"]["plugins_dir"],
+    :types_dir    => node["collectd"]["source"]["types_dir"],
     :interval     => node["collectd"]["interval"],
     :read_threads => node["collectd"]["read_threads"],
     :write_queue_limit_high => node["collectd"]["write_queue_limit_high"],
@@ -122,7 +125,7 @@ template "#{node["collectd"]["dir"]}/etc/collectd.conf" do
   notifies :restart, "service[collectd]"
 end
 
-directory "#{node["collectd"]["dir"]}/etc/conf.d" do
+directory node["collectd"]["source"]["plugins_conf_dir"] do
   action :create
 end
 
