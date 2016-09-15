@@ -18,24 +18,22 @@
 # Short-Description: start the statistics collection daemon
 ### END INIT INFO
 
-set -e
-
-PATH=<%= @dir %>/sbin:<%= @dir %>/bin:/sbin:/bin:/usr/sbin:/usr/bin
+PATH=/etc/collectd/sbin:/etc/collectd/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 DISABLE=0
 
 DESC="statistics collection and monitoring daemon"
 NAME=collectd
-DAEMON=<%= @dir %>/sbin/collectd
+DAEMON=/etc/collectd/sbin/collectd
 
-CONFIGFILE=<%= @dir %>/etc/collectd.conf
+CONFIGFILE=/etc/collectd/etc/collectd.conf
 PIDFILE=/run/collectd.pid
 
 USE_COLLECTDMON=1
-COLLECTDMON_DAEMON=<%= @dir %>/sbin/collectdmon
+COLLECTDMON_DAEMON=/etc/collectd/sbin/collectdmon
 COLLECTDMON_PIDFILE=/run/collectdmon.pid
 
-MAXWAIT=30
+MAXWAIT=20
 
 # Gracefully exit if the package has been removed.
 test -x $DAEMON || exit 0
@@ -103,26 +101,56 @@ In large setups it might take some time to write all pending data to
 the disk. You can adjust the waiting time in /etc/default/collectd."
 
 d_stop() {
-	PID=$( cat "$_PIDFILE" 2> /dev/null ) || true
-
-	start-stop-daemon --stop --quiet --oknodo --pidfile "$_PIDFILE"
-
-	sleep 1
-	if test -n "$PID" && kill -0 $PID 2> /dev/null; then
-		i=0
-		while kill -0 $PID 2> /dev/null; do
-			i=$(( $i + 2 ))
-			echo -n " ."
-
-			if test $i -gt $MAXWAIT; then
-				echo "$still_running_warning" >&2
-				return 1
-			fi
-
-			sleep 2
-		done
-		return 0
-	fi
+        echo ""
+        COLLECTDPID=$(pidof collectd)
+        COLLECTDMONPID=$(pidof collectdmon)
+        if [ -n "${COLLECTDPID}" ] || [ -n "${COLLECTDMONPID}" ] ; then
+          echo "stopping collectd"
+          start-stop-daemon --stop --quiet --oknodo --pidfile "$_PIDFILE"
+        else
+          echo "collectd is not running"
+          if [ -f $_PIDFILE ] ; then
+            rm $_PIDFIILE
+          fi
+          return 0
+        fi
+        echo "Sleeping 10 seconds"
+	sleep 10 
+        echo  "gathering collectd pids"
+        COLLECTDPID=$(/bin/pidof "collectd")
+        COLLECTDMONPID=$(/bin/pidof "collectdmon")
+        echo $COLLECTDPID
+        echo $COLLECTDMONPID
+        if [ -n "${COLLECTDPID}" ]; then
+          echo "Killing PIDS"
+          for p in $COLLECTDPID
+          do
+            echo "Killing $p..."
+            kill -9 $p
+          done
+          if [ -f $_PIDFILE ] ; then
+            rm $_PIDFIILE
+          fi
+        else
+          if [ -f $_PIDFILE ] ; then
+            rm $_PIDFIILE
+          fi
+        fi
+        if [ -n "${COLLECTDMONPID}" ]; then
+          echo "Killing PIDS"
+          for p in $COLLECTDMONPID
+          do
+            echo "Killing $p..."
+            kill -9 $p
+          done
+          if [ -f $_PIDFILE ] ; then
+            rm $_PIDFIILE
+          fi
+        else
+          if [ -f $_PIDFILE ] ; then
+            rm $_PIDFIILE
+          fi
+        fi
 }
 
 d_status() {
@@ -151,7 +179,7 @@ case "$1" in
 		echo "."
 		;;
 	stop)
-		echo -n "Stopping $DESC: $NAME"
+		echo "Stopping $DESC: $NAME"
 		d_stop
 		echo "."
 		;;

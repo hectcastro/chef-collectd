@@ -1,3 +1,7 @@
+## 2.1.1:
+
+- Fixing init script
+
 ## 2.1.0:
 
 - Add systemd support for RHEL 7.x.

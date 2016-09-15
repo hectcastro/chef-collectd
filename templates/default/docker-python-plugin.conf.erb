@@ -21,7 +21,7 @@ LoadPlugin "python"
   <% end else %>
   <%= key %> <%= collectd_option(value) %>
   <% end end %>
-  <%= "<Module \"#{@name}\">" %>
+  <%= "<Module \"#{@name}plugin\">" %>
     <% @module_config.each_pair do |key, value|
       if value.is_a? Array
         value.each do |subvalue| %>
