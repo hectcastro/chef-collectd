@@ -14,3 +14,4 @@ default["collectd"]["plugins"]            = Mash.new
 default["collectd"]["python_plugins"]     = Mash.new
 default["collectd"]["graphite_role"]      = "graphite"
 default["collectd"]["graphite_ipaddress"] = ""
+default["collectd"]["configure_flag"] = ""
