@@ -45,6 +45,7 @@ work done by [coderanger](https://github.com/coderanger/chef-collectd) and
 * `node["collectd"]["graphite_ipaddress"]` – IP address to Graphite server if
   you're trying to target one that isn't searchable.
 * `node["collectd"]["packages"]` – List of collectd packages.
+* `node["collectd"]["configure_flag"]` – Flag for enabling non-default collectd packages. 
 
 ## Recipes
 
