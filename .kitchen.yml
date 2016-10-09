@@ -46,6 +46,8 @@ suites:
             ReportReserved: false
             FSType: [ "proc", "sysfs", "fusectl", "debugfs", "devtmpfs", "devpts", "tmpfs" ]
             IgnoreSelected: true
+        load:
+          enable: false
       python_plugins:
         rabbitmq:
           typesdb: "/mnt/pro..."
