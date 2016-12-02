@@ -38,3 +38,5 @@ default['collectd']['solaris'] = {
 if node['platform_family'] == 'solaris2'
   node.default['ark']['tar'] = '/bin/gtar'
 end
+default["collectd"]["configure_flag"] = ""
+default["collectd"]["custom_types_db"] = ""

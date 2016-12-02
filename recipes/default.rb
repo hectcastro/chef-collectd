@@ -20,12 +20,13 @@ template "#{node["collectd"]["dir"]}/etc/collectd.conf" do
     :write_queue_limit_high => node["collectd"]["write_queue_limit_high"],
     :write_queue_limit_low => node["collectd"]["write_queue_limit_low"],
     :collect_internal_stats => node["collectd"]["collect_internal_stats"],
-    :plugins      => node["collectd"]["plugins"]
+    :plugins      => node["collectd"]["plugins"],
+    :custom_types_db => node["collectd"]["custom_types_db"]
   )
   notifies :restart, "service[collectd]"
 end
 
-directory "#{node["collectd"]["dir"]}/etc/conf.d" do
+directory node["collectd"]["plugins_conf_dir"] do
   action :create
 end
 

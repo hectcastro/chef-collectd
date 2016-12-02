@@ -1,3 +1,11 @@
+## 2.2.0:
+
+- Update write_graphite configuration to use Node tag.
+- Update CentOS 6.x in Test Kitchen platforms.
+- Update PID path reference in init script.
+- Add configure flag attribute for building collectd from source.
+- Fix incorrect recipe names in README.
+
 ## 2.1.0:
 
 - Add systemd support for RHEL 7.x.
