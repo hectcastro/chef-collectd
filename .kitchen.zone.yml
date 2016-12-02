@@ -1,0 +1,41 @@
+driver:
+  name: zone
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: 12.3.0
+
+platforms:
+  - name: solaris-11-i86pc
+    provisioner:
+      sudo_command: 'sudo -E'
+    verifier:
+      sudo_command: 'sudo -E'
+    driver:
+      global_zone_hostname: '<your-global-zone-hostname>'
+      global_zone_user: '<your-global-zone-username>'
+      global_zone_password: '<your-global-zone-password>'
+      test_zone_ip: '<test-zone-ip-you-want>'
+suites:
+  - name: default
+    run_list:
+      - recipe[collectd-ng]
+      - recipe[collectd-ng::attribute_driven]
+    attributes:
+        graphite_ipaddress: localhost
+        plugins:
+          write_graphite:
+            config: { Prefix: "collectd." }
+          syslog:
+            config: { LogLevel: "Info" }
+          disk: { }
+          swap: { }
+          memory: { }
+          cpu: { }
+          interface:
+            config: { Interface: "lo", IgnoreSelected: true }
+          df:
+            config:
+              ReportReserved: false
+              FSType: [ "proc", "sysfs", "fusectl", "debugfs", "devtmpfs", "devpts", "tmpfs" ]
+              IgnoreSelected: true

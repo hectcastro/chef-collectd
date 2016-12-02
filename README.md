@@ -16,6 +16,10 @@ work done by [coderanger](https://github.com/coderanger/chef-collectd) and
 * Ubuntu 12.04
 * Ubuntu 14.04
 
+* Solaris 11.2. This works on Solaris zones given a physical Solaris 11.2 server. 
+  - Use the .kitchen.zone.yml file for that. Check usage at (https://github.com/criticalmass/kitchen-zone). 
+  - You will need Oracle SSL certificate-key pair to install Solaris Studio package. Check here http://www.oracle.com/technetwork/server-storage/developerstudio/downloads/index-jsp-141149.html and update test/integration/data\_bags/oracle\_key/not_real.json file.
+
 ### Cookbooks
 
 * build-essential

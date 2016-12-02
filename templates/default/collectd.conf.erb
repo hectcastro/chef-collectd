@@ -7,7 +7,7 @@ Hostname "<%= @name %>"
 FQDNLookup <%= @fqdnlookup %>
 BaseDir "<%= @dir %>"
 PluginDir "<%= @dir %>/lib/collectd"
-TypesDB "<%= @dir %>/share/collectd/types.db"
+TypesDB "<%= @dir %>/share/collectd/types.db" <% unless @custom_types_db.nil? || @custom_types_db.empty? %> "<%= @custom_types_db %>" <% end %>
 Interval <%= @interval %>
 ReadThreads <%= @read_threads %>
 WriteQueueLimitHigh <%= @write_queue_limit_high %>
