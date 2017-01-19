@@ -8,8 +8,9 @@ action :create do
     source new_resource.template
     cookbook new_resource.cookbook
     variables(
-      :name   => new_resource.name,
-      :config => new_resource.config
+      :name               => new_resource.name,
+      :config             => new_resource.config,
+      :loadplugin_options => new_resource.loadplugin_options
     )
   end
 end
