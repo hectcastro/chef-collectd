@@ -25,6 +25,7 @@ node["collectd"]["plugins"].each_pair do |plugin_key, definition|
   # Graphite auto-discovery
   collectd_ng_plugin plugin_key.to_s do
     config definition["config"].to_hash if definition["config"]
+    loadplugin_options definition["loadplugin_options"].to_hash if definition['loadplugin_options']
     template definition["template"].to_s if definition["template"]
     cookbook definition["cookbook"].to_s if definition["cookbook"]
     notifies :restart, "service[collectd]"
