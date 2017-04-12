@@ -1,1 +1,1 @@
-default["collectd"]["packages"] = [ "collectd" ]
+default['collectd']['packages'] = [ 'collectd' ]

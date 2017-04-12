@@ -23,29 +23,29 @@ work done by [coderanger](https://github.com/coderanger/chef-collectd) and
 
 ## Attributes
 
-* `node["collectd"]["version"]` - Version of collectd to install.
-* `node["collectd"]["dir"]` - Base directory for collectd.
-* `node["collectd"]["plugins_conf_dir"]`- Plugin directory for collectd.
-* `node["collectd"]["url"]` - URL to the collectd archive.
-* `node["collectd"]["checksum"]` - Checksum for the collectd archive.
-* `node["collectd"]["interval"]` - Number of seconds to wait between data reads.
-* `node["collectd"]["read_threads"]` - Number of threads performing data reads.
-* `node["collectd"]["write_queue_limit_high"]` - Upper bound on write queue size.
-* `node["collectd"]["write_queue_limit_low"]` - Lower bound on write queue size.
-* `node["collectd"]["collect_internal_stats"]` - Flag to collect internal
+* `node['collectd']['version']` - Version of collectd to install.
+* `node['collectd']['dir']` - Base directory for collectd.
+* `node['collectd']['plugins_conf_dir']`- Plugin directory for collectd.
+* `node['collectd']['url']` - URL to the collectd archive.
+* `node['collectd']['checksum']` - Checksum for the collectd archive.
+* `node['collectd']['interval']` - Number of seconds to wait between data reads.
+* `node['collectd']['read_threads']` - Number of threads performing data reads.
+* `node['collectd']['write_queue_limit_high']` - Upper bound on write queue size.
+* `node['collectd']['write_queue_limit_low']` - Lower bound on write queue size.
+* `node['collectd']['collect_internal_stats']` - Flag to collect internal
   collectd statistics.
-* `node["collectd"]["name"]` - Name of the node reporting statstics.
-* `node["collectd"]["fqdnlookup"]` - Flag to determine if the node should
+* `node['collectd']['name']` - Name of the node reporting statstics.
+* `node['collectd']['fqdnlookup']` - Flag to determine if the node should
   determine its own FQDN.
-* `node["collectd"]["plugins"]` - Mash of plugins for installation.
-* `node["collectd"]["python_plugins"]` - Mash of Python plugins for installation.
-* `node["collectd"]["plugins_conf_dir"]` - Directory for collectd plugins configuration files.
-* `node["collectd"]["graphite_role"]` – Role assigned to Graphite server for
+* `node['collectd']['plugins']` - Mash of plugins for installation.
+* `node['collectd']['python_plugins']` - Mash of Python plugins for installation.
+* `node['collectd']['plugins_conf_dir']` - Directory for collectd plugins configuration files.
+* `node['collectd']['graphite_role']` – Role assigned to Graphite server for
   search.
-* `node["collectd"]["graphite_ipaddress"]` – IP address to Graphite server if
+* `node['collectd']['graphite_ipaddress']` – IP address to Graphite server if
   you're trying to target one that isn't searchable.
-* `node["collectd"]["packages"]` – List of collectd packages.
-* `node["collectd"]["configure_flag"]` – Flag for enabling non-default collectd packages. 
+* `node['collectd']['packages']` – List of collectd packages.
+* `node['collectd']['configure_flag']` – Flag for enabling non-default collectd packages. 
 
 ## Recipes
 
@@ -63,7 +63,7 @@ By default this cookbook will attempt to download collectd from collectd.org.
 If your HTTP request includes Chef as the user agent, collectd.org returns an
 HTTP response with a message asking you to please stop using their downloads
 via Chef. It is **highly recommended** that you override
-`node["collectd"]["url"]` with your own download location for collectd.
+`node['collectd']['url']` with your own download location for collectd.
 
 A list of alternative download locations for collectd:
 
@@ -73,28 +73,28 @@ In order to configure collectd via attributes, setup your roles like:
 
 ```ruby
 default_attributes(
-  "collectd" => {
-    "plugins" => {
-      "syslog" => {
-        "config" => { "LogLevel" => "Info" }
+  'collectd' => {
+    'plugins' => {
+      'syslog' => {
+        'config' => { 'LogLevel' => 'Info' }
       },
-      "disk"      => { },
-      "swap"      => { },
-      "memory"    => { },
-      "cpu"       => { },
-      "interface" => {
-        "config" => { "Interface" => "lo", "IgnoreSelected" => true }
+      'disk'      => { },
+      'swap'      => { },
+      'memory'    => { },
+      'cpu'       => { },
+      'interface' => {
+        'config' => { 'Interface' => 'lo', 'IgnoreSelected' => true }
       },
-      "df"        => {
-        "config" => {
-          "ReportReserved" => false,
-          "FSType" => [ "proc", "sysfs", "fusectl", "debugfs", "devtmpfs", "devpts", "tmpfs" ],
-          "IgnoreSelected" => true
+      'df'        => {
+        'config' => {
+          'ReportReserved' => false,
+          'FSType' => [ 'proc', 'sysfs', 'fusectl', 'debugfs', 'devtmpfs', 'devpts', 'tmpfs' ],
+          'IgnoreSelected' => true
         }
       },
-      "write_graphite" => {
-        "config" => {
-          "Prefix" => "servers."
+      'write_graphite' => {
+        'config' => {
+          'Prefix' => 'servers.'
         }
       }
     }
