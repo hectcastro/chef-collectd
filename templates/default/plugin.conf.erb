@@ -6,8 +6,8 @@ LoadPlugin "<%= @name %>"
 
 <% if not @config.empty? %>
 <Plugin "<%= @name %>">
-  <%= "<Node \"#{node['hostname']}\">" if @name == "write_graphite" %>
-  <%= "<URL #{collectd_option(@config.delete("URL"))}>" if @name == "write_http" %>
+  <%= "<Node \"#{node['hostname']}\">" if @name == 'write_graphite' %>
+  <%= "<URL #{collectd_option(@config.delete("URL"))}>" if @name == 'write_http' %>
   <% @config.each_pair do |key, value|
     if value.is_a? Array
       value.each do |subvalue| %>
@@ -15,7 +15,7 @@ LoadPlugin "<%= @name %>"
   <% end else %>
   <%= key %> <%= collectd_option(value) %>
   <% end end %>
-  <%= "</Node>" if @name == "write_graphite" %>
-  <%= "</URL >" if @name == "write_http" %>
+  <%= "</Node>" if @name == 'write_graphite' %>
+  <%= "</URL >" if @name == 'write_http' %>
 </Plugin>
 <% end %>

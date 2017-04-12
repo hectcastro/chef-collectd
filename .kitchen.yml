@@ -32,25 +32,25 @@ suites:
       graphite_ipaddress: localhost
       plugins:
         write_graphite:
-          config: { Prefix: "collectd." }
+          config: { Prefix: 'collectd.' }
         syslog:
-          config: { LogLevel: "Info" }
+          config: { LogLevel: 'Info' }
         disk: { }
         swap: { }
         memory: { }
         cpu: { }
         interface:
-          config: { Interface: "lo", IgnoreSelected: true }
+          config: { Interface: 'lo', IgnoreSelected: true }
         df:
           config:
             ReportReserved: false
-            FSType: [ "proc", "sysfs", "fusectl", "debugfs", "devtmpfs", "devpts", "tmpfs" ]
+            FSType: [ 'proc', 'sysfs', 'fusectl', 'debugfs', 'devtmpfs', 'devpts', 'tmpfs' ]
             IgnoreSelected: true
       python_plugins:
         rabbitmq:
-          typesdb: "/mnt/pro..."
+          typesdb: '/mnt/pro...'
           config:
-            ModulePath: "/mnt/projects/collectd-rabbitmq/"
-            Import: "rabbitmq"
+            ModulePath: '/mnt/projects/collectd-rabbitmq/'
+            Import: 'rabbitmq'
           module_config:
-            username: "blaj"
+            username: 'blaj'
