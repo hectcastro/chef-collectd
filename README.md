@@ -24,6 +24,7 @@ work done by [coderanger](https://github.com/coderanger/chef-collectd) and
 ## Attributes
 
 * `node["collectd"]["version"]` - Version of collectd to install.
+* `node["collectd"]["source_compression_type"]` - Compression algorithm of source file, default is `gz`. For newer versions of `collectd` (>=`5.6.0`) use `bz2`.
 * `node["collectd"]["dir"]` - Base directory for collectd.
 * `node["collectd"]["plugins_conf_dir"]`- Plugin directory for collectd.
 * `node["collectd"]["url"]` - URL to the collectd archive.
