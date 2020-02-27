@@ -75,7 +75,7 @@ end
 bash "install-collectd" do
   cwd Chef::Config[:file_cache_path]
   code <<-EOH
-    tar -xzf collectd-#{node["collectd"]["version"]}.tar.gz
+    tar -xf collectd-#{node["collectd"]["version"]}.tar.gz
     (cd collectd-#{node["collectd"]["version"]} && ./configure --prefix=#{node["collectd"]["dir"]} #{node["collectd"]["configure_flag"]} && make && make install)
   EOH
   not_if "#{node["collectd"]["dir"]}/sbin/collectd -h 2>&1 | grep #{node["collectd"]["version"]}"
@@ -103,7 +103,20 @@ template "/usr/lib/systemd/system/collectd.service" do
   )
   notifies :restart, "service[collectd]"
   only_if { node["init_package"] == "systemd" }
+  not_if { node["platform"] == "ubuntu" }
 end
+
+template "/lib/systemd/system/collectd.service" do
+  mode "0644"
+  variables(
+    :dir => node["collectd"]["dir"]
+  )
+  notifies :restart, "service[collectd]"
+  only_if { node["init_package"] == "systemd" }
+  only_if { node["platform"] == "ubuntu" }
+end
+
+
 
 template "#{node["collectd"]["dir"]}/etc/collectd.conf" do
   mode "0644"
